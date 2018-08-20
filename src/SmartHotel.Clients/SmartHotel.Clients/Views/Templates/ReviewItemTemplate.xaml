@@ -44,6 +44,7 @@
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="Android, iOS" Value="80" />
                             <On Platform="UWP" Value="100" />
+                            <On Platform="Tizen" Value="80" />
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -98,12 +99,14 @@
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="ic_star_active" />
                             <On Platform="UWP" Value="Assets/ic_star_active.png" />
+                            <On Platform="Tizen" Value="ic_star_active.png" />
                         </OnPlatform>
                     </controls:RatingControl.ImageFullStar>
                     <controls:RatingControl.ImageEmptyStar>
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="ic_star_normal" />
                             <On Platform="UWP" Value="Assets/ic_star_normal.png" />
+                            <On Platform="Tizen" Value="ic_star_normal.png" />
                         </OnPlatform>
                     </controls:RatingControl.ImageEmptyStar>
                 </controls:RatingControl>

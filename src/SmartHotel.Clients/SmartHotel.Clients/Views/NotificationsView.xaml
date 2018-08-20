@@ -39,6 +39,7 @@
                     Aspect="AspectFill">
                     <Image.Source>
                         <OnPlatform x:TypeArguments="ImageSource">
+                            <On Platform="Tizen" Value="img_header_background_1.png" />
                             <On Platform="Android, iOS" Value="img_header_background_1" />
                             <On Platform="UWP" Value="Assets/img_header_background_1.png" />
                         </OnPlatform>
@@ -61,6 +62,7 @@
                             <BoxView>
                                 <BoxView.HeightRequest>
                                     <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="Tizen" Value="60" />
                                         <On Platform="Android, iOS" Value="60" />
                                     </OnPlatform>
                                 </BoxView.HeightRequest>

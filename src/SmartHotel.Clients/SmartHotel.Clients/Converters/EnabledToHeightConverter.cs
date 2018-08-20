@@ -12,7 +12,7 @@ namespace SmartHotel.Clients.Core.Converters
             {
                 var isEnabled = (bool)value;
 
-                return isEnabled ? 60 : 0;
+                return isEnabled ? (TargetIdiom.TV == Device.Idiom ? 120 : 60) : 0;
             }
 
             return 0;

@@ -65,7 +65,6 @@ namespace SmartHotel.Clients.Core.Validations
             }
 
             IsValid = !Errors.Any();
-
             return this.IsValid;
         }
     }

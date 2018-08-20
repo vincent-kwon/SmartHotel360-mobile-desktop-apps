@@ -27,10 +27,11 @@ namespace SmartHotel.Clients.Core.Services.Dialog
             toastConfig.SetIcon(icon);
             */
 
-            toastConfig.SetMessageTextColor(System.Drawing.Color.White);
-            toastConfig.SetBackgroundColor(System.Drawing.Color.FromArgb(33, 44, 55));
+            // TO Do
+            //toastConfig.SetMessageTextColor(System.Drawing.Color.White);
+            //toastConfig.SetBackgroundColor(System.Drawing.Color.FromArgb(33, 44, 55));
 
-            UserDialogs.Instance.Toast(toastConfig);
+            //UserDialogs.Instance.Toast(toastConfig);
         }
 
         public Task<bool> ShowConfirmAsync(string message, string title, string okLabel, string cancelLabel)

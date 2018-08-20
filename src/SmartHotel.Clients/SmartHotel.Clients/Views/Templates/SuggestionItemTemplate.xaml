@@ -22,6 +22,7 @@
                    BasedOn="{StaticResource FiraSansRegularLabelStyle}">
                 <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
                 <Setter Property="LineBreakMode" Value="TailTruncation" />
+                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
             </Style>
             
         </ResourceDictionary>
@@ -29,8 +30,13 @@
   <ContentView.Content>
         <Grid
             RowSpacing="0"
-            WidthRequest="200"
             Padding="24, 24, 0, 24">
+            <Grid.WidthRequest>
+                <OnIdiom x:TypeArguments="x:Double"
+                         Phone="200" 
+                         Tablet="200" 
+                         TV="680" />
+            </Grid.WidthRequest>
             <Grid.RowDefinitions>
                 <RowDefinition Height="4" />
                 <RowDefinition Height="*" />
@@ -51,12 +57,14 @@
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android, iOS" Value="placeholder_2" />
                         <On Platform="UWP" Value="Assets/placeholder_2.png" />
+                        <On Platform="Tizen" Value="placeholder_2.png" />
                     </OnPlatform>
                 </ffimageloading:CachedImage.LoadingPlaceholder>
                 <ffimageloading:CachedImage.ErrorPlaceholder>
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android, iOS" Value="placeholder_2" />
                         <On Platform="UWP" Value="Assets/placeholder_2.png" />
+                        <On Platform="Tizen" Value="placeholder_2.png" />
                     </OnPlatform>
                 </ffimageloading:CachedImage.ErrorPlaceholder>
             </ffimageloading:CachedImage>
@@ -80,18 +88,25 @@
                     Grid.Column="0"
                     Rating="{Binding Rating}"
                     Precision="Full"
-                    HorizontalOptions="Start"
-                    WidthRequest="150">
+                    HorizontalOptions="Start">
+                    <controls:RatingControl.WidthRequest>
+                            <OnIdiom x:TypeArguments="x:Double"
+                                     Phone="150" 
+                                     Tablet="150" 
+                                     TV="300" />
+                    </controls:RatingControl.WidthRequest>
                     <controls:RatingControl.ImageFullStar>
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="ic_star_active" />
                             <On Platform="UWP" Value="Assets/ic_star_active.png" />
+                            <On Platform="Tizen" Value="ic_star_active.png" />
                         </OnPlatform>
                     </controls:RatingControl.ImageFullStar>
                     <controls:RatingControl.ImageEmptyStar>
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="ic_star_normal" />
                             <On Platform="UWP" Value="Assets/ic_star_normal.png" />
+                            <On Platform="Tizen" Value="ic_star_normal.png" />
                         </OnPlatform>
                     </controls:RatingControl.ImageEmptyStar>
                 </controls:RatingControl>

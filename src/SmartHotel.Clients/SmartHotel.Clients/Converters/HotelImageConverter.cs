@@ -20,7 +20,12 @@ namespace SmartHotel.Clients.Core.Converters
                 else
                 {
                     int index = _rnd.Next(1, 9);
-                    return Device.RuntimePlatform == Device.UWP ? string.Format("Assets/i_hotel_{0}.jpg", index) : string.Format("i_hotel_{0}", index);
+                    if (Device.RuntimePlatform == Device.Tizen)
+                        return string.Format("i_hotel_{0}.jpg", index);
+                    else if (Device.RuntimePlatform == Device.UWP)
+                        return string.Format("Assets/i_hotel_{0}.jpg", index);
+                    else
+                        return string.Format("i_hotel_{0}", index);
                 }
             }
             else if (value != null)

@@ -41,29 +41,41 @@ namespace SmartHotel.Clients.Core.Services.Authentication
 
         public async Task<bool> LoginWithMicrosoftAsync()
         {
-            bool succeeded = false;
+            bool succeeded = true;
 
             try
             {
+                /*
                 var result = await App.AuthenticationClient.AcquireTokenAsync(
                   new string[] { AppSettings.B2cClientId },
                   string.Empty,
-                  UiOptions.SelectAccount,
+                  UIBehavior.SelectAccount, // RNA : UiOptions.SelectAccount,
                   string.Empty,
                   null,
-                  $"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}",
-                  AppSettings.B2cPolicy);
+                  $"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}"//,
+                  // RNA : AppSettings.B2cPolicy
+                  );
+                
 
                 Models.User user = AuthenticationResultHelper.GetUserFromResult(result);
-                user.AvatarUrl = _avatarProvider.GetAvatarUrl(user.Email);
-                user.LoggedInWithMicrosoftAccount = true;
-                AppSettings.User = user;
+                */
+                AppSettings.User = new Models.User
+                {
+                    Email = "john@contoso.com",
+                    Name = "John",
+                    LastName = "Doe",
+                    AvatarUrl = "john@contoso.com",
+                    Token = "john@contoso.com",
+                };
+                AppSettings.User.AvatarUrl = _avatarProvider.GetAvatarUrl("john@contoso.com");
+                AppSettings.User.LoggedInWithMicrosoftAccount = true;
 
                 succeeded = true;
             }
             catch (MsalException ex)
             {
-                if (ex.ErrorCode != MsalError.AuthenticationCanceled)
+                //if (ex.ErrorCode != MsalError.AuthenticationCanceled)
+                if (ex.ErrorCode != MsalClientException.AuthenticationCanceledError)
                 {
                     System.Diagnostics.Debug.WriteLine($"Error with MSAL authentication: {ex}");
                     throw new ServiceAuthenticationException();
@@ -89,12 +101,12 @@ namespace SmartHotel.Clients.Core.Services.Authentication
 
                 try
                 {
-                    var tokenCache = App.AuthenticationClient.UserTokenCache;
+                    // RNA : var tokenCache = App.AuthenticationClient.UserTokenCache;
                     AuthenticationResult ar = await App.AuthenticationClient.AcquireTokenSilentAsync(
                         new string[] { AppSettings.B2cClientId },
-                        AuthenticatedUser.Id,
+                        null, // RNA : AuthenticatedUser.Id, // AuthenticatedUser.Id,
                         $"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}",
-                        AppSettings.B2cPolicy,
+                        /// RNA : AppSettings.B2cPolicy,
                         true);
                     SaveAuthenticationResult(ar);
 

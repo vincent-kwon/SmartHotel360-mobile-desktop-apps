@@ -24,8 +24,12 @@ namespace SmartHotel.Clients
         }
         public App()
         {
+            // RNA 
+            string autority = "https://login.microsoftonline.com/common";
             AuthenticationClient =
-                new PublicClientApplication($"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}", AppSettings.B2cClientId);
+                new PublicClientApplication($"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}", autority);
+            //AuthenticationClient =
+            //    new PublicClientApplication($"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}", AppSettings.B2cClientId);
 
             InitializeComponent();
     
@@ -50,10 +54,12 @@ namespace SmartHotel.Clients
         protected override void OnStart()
         {
             // Handle when your app starts
+            /*
             AppCenter.Start($"ios={AppSettings.AppCenterAnalyticsIos};" +
                 $"uwp={AppSettings.AppCenterAnalyticsWindows};" +
                 $"android={AppSettings.AppCenterAnalyticsAndroid}",
                 typeof(Analytics), typeof(Crashes), typeof(Distribute));
+                */
         }
 
         protected override void OnSleep()
