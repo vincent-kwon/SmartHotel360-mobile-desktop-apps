@@ -52,6 +52,7 @@
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="5, 0, 0, 0" />
                             <On Platform="iOS" Value="0, 8, 0, 0" />
+                            <On Platform="Tizen" Value="5, 0, 0, 0" />
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -70,6 +71,7 @@
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness">
                             <On Platform="Android" Value="0, -3, 5, 0" />
+                            <On Platform="Tizen" Value="0, -3, 5, 0" />
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -129,6 +131,7 @@
                     Aspect="AspectFill">
                     <ffimageloading:CachedImage.Source>
                         <OnPlatform x:TypeArguments="ImageSource">
+                            <On Platform="Tizen, iOS" Value="img_header_background_1.png" />
                             <On Platform="Android, iOS" Value="img_header_background_1" />
                             <On Platform="UWP" Value="Assets/img_header_background_2.png" />
                         </OnPlatform>
@@ -157,6 +160,7 @@
                                 <OnPlatform x:TypeArguments="ImageSource">
                                     <On Platform="Android, iOS" Value="logo_splash" />
                                     <On Platform="UWP" Value="Assets/logo_splash.png" />
+                                    <On Platform="Tizen" Value="logo_splash.png" />
                                 </OnPlatform>
                             </Image.Source>
                             <Image.GestureRecognizers>
@@ -323,9 +327,15 @@
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="Android" Value="1" />
                             <On Platform="iOS, UWP" Value="8" />
+                            <On Platform="Tizen" Value="1" />
                         </OnPlatform>
                     </StackLayout.Spacing>
                     <ctrls:ButtonFrame>
+                        <ctrls:ButtonFrame.Padding>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Tizen" Value="10, 10" />
+                            </OnPlatform>
+                        </ctrls:ButtonFrame.Padding>
                         <ctrls:ButtonFrame.HorizontalOptions>
                             <OnIdiom
                                 x:TypeArguments="LayoutOptions" 
@@ -353,6 +363,11 @@
                         FontFamily="{StaticResource PoppinsRegular}"
                         FontSize="{StaticResource MediumSize}"/>
                     <ctrls:ButtonFrame>
+                        <ctrls:ButtonFrame.Padding>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Tizen" Value="10, 10" />
+                            </OnPlatform>
+                        </ctrls:ButtonFrame.Padding>
                         <ctrls:ButtonFrame.HorizontalOptions>
                             <OnIdiom
                                 x:TypeArguments="LayoutOptions" 
