@@ -7,8 +7,17 @@ namespace SmartHotel.Clients.Core.Controls
     {
         public CalendarButton() : base()
         {
-            HeightRequest = 48;
-            WidthRequest = 48;
+            if (Device.Idiom == TargetIdiom.TV)
+            {
+                HeightRequest = 230;
+                WidthRequest = 230;
+            }
+            else
+            {
+                HeightRequest = 48;
+                WidthRequest = 48;
+            }
+
         }
 
 		public static readonly BindableProperty DateProperty =

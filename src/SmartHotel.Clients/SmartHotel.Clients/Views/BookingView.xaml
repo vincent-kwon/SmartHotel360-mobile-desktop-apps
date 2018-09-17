@@ -46,8 +46,17 @@
                     Value="True" />
                 <Setter Property="CornerRadius"
                     Value="4" />
-                <Setter Property="HeightRequest" 
-                        Value="48" />
+                <Setter Property="HeightRequest">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, iOS, UWP" Value="48" />
+                        <On Platform="Tizen" >
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="48" 
+                             Tablet="48" 
+                             TV="120" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource WhiteColor}" />
                 <Setter Property="VerticalOptions"
@@ -59,6 +68,7 @@
                 <Setter Property="Padding">
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="Android, iOS" Value="10, 0" />
+                        <On Platform="Tizen" Value="5, 5" />
                     </OnPlatform>
                 </Setter>
             </Style>
@@ -88,6 +98,17 @@
                         Value="{StaticResource MidMediumSize}" />
                 <Setter Property="Margin" 
                         Value="34, 52, 0, 0" />
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="Android, iOS, UWP" Value="34, 52, 0, 0" />
+                        <On Platform="Tizen">
+                            <OnIdiom x:TypeArguments="Thickness"
+                                     Phone="34, 52, 0, 0" 
+                                     Tablet="34, 52, 0, 0" 
+                                     TV="34, 120, 0, 0" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource WhiteColor}" />
             </Style>
@@ -160,6 +181,7 @@
                     Aspect="AspectFill">
                     <Image.Source>
                         <OnPlatform x:TypeArguments="ImageSource">
+                            <On Platform="Tizen" Value="img_header_background_1.png" />
                             <On Platform="Android, iOS" Value="img_header_background_1" />
                             <On Platform="UWP" Value="Assets/img_header_background_1.png" />
                         </OnPlatform>
@@ -200,6 +222,7 @@
                                             BackgroundColor="{StaticResource WhiteColor}">
                                             <Grid.HeightRequest>
                                                 <OnPlatform x:TypeArguments="x:Double">
+                                                    <On Platform="Tizen" Value="60" />
                                                     <On Platform="Android, iOS" Value="60" />
                                                     <On Platform="UWP" Value="64" />
                                                 </OnPlatform>
@@ -221,6 +244,7 @@
                                                 Margin="0, 2">
                                                 <Image.Source>
                                                     <OnPlatform x:TypeArguments="ImageSource">
+                                                        <On Platform="Tizen" Value="ball_left.png" />
                                                         <On Platform="Android, iOS" Value="ball_left" />
                                                         <On Platform="UWP" Value="Assets/ball_left.png" />
                                                     </OnPlatform>
@@ -235,6 +259,12 @@
                                                 ConverterParameter={x:Reference SuggestionCell}}">
                                                 <Grid.Margin>
                                                     <OnPlatform x:TypeArguments="Thickness">
+                                                        <On Platform="Tizen">
+                                                            <OnIdiom x:TypeArguments="Thickness" 
+                                                                 Phone="0, 11.5" 
+                                                                 Tablet="0, 11.5" 
+                                                                 TV="0, 48" />
+                                                            </On>
                                                         <On Platform="Android" Value="0, 6" />
                                                         <On Platform="iOS, UWP" Value="0, 2" />
                                                     </OnPlatform>
@@ -249,6 +279,7 @@
                                                 Margin="0, 2">
                                                 <Image.Source>
                                                     <OnPlatform x:TypeArguments="ImageSource">
+                                                        <On Platform="Tizen" Value="ball_right.png" />
                                                         <On Platform="Android, iOS" Value="ball_right" />
                                                         <On Platform="UWP" Value="Assets/ball_right.png" />
                                                     </OnPlatform>

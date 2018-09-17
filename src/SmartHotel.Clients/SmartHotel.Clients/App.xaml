@@ -38,102 +38,158 @@
             <converters:TemperatureValueConverter x:Key="TemperatureValueConverter" />
             
             <!-- FONTS -->
-            <OnPlatform x:Key="PoppinsBold"
-                        x:TypeArguments="x:String"
-                        iOS="Poppins-Bold"
-                        Android="Poppins-Bold.ttf#Poppins"
-                        WinPhone="/Assets/Fonts/Poppins-Bold.ttf#Poppins"/>
+            <OnPlatform x:Key="PoppinsBold" x:TypeArguments="x:String">
+              <On Platform="Android" Value="Poppins-Bold.ttf#Poppins" />
+              <On Platform="WinPhone" Value="/Assets/Fonts/Poppins-Bold.ttf#Poppins" />
+              <On Platform="iOS" Value="Poppins-Bold" />
+              <On Platform="Tizen" Value="Poppins:style=Bold"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="PoppinsLight"
-                        x:TypeArguments="x:String"
-                        iOS="Poppins-Light"
-                        Android="Poppins-Light.ttf#Poppins"
-                        WinPhone="/Assets/Fonts/Poppins-Light.ttf#Poppins" />
+            <OnPlatform x:Key="PoppinsLight" x:TypeArguments="x:String">
+              <On Platform="Android" Value="Poppins-Light.ttf#Poppins" />
+              <On Platform="WinPhone" Value="/Assets/Fonts/Poppins-Light.ttf#Poppins" />
+              <On Platform="iOS" Value="Poppins-Light" />
+              <On Platform="Tizen" Value="Poppins:style=Light,Regular"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="PoppinsMedium"
-                        x:TypeArguments="x:String"
-                        iOS="Poppins-Medium"
-                        Android="Poppins-Medium.ttf#Poppins"
-                        WinPhone="/Assets/Fonts/Poppins-Medium.ttf#Poppins" />
-            
-            <OnPlatform x:Key="PoppinsRegular"
-                        x:TypeArguments="x:String"
-                        iOS="Poppins-Regular"
-                        Android="Poppins-Regular.ttf#Poppins"
-                        WinPhone="/Assets/Fonts/Poppins-Regular.ttf#Poppins"/>
+            <OnPlatform x:Key="PoppinsMedium" x:TypeArguments="x:String">
+              <On Platform="Android" Value="Poppins-Medium.ttf#Poppins" />
+              <On Platform="WinPhone" Value= "/Assets/Fonts/Poppins-Medium.ttf#Poppins"/>
+              <On Platform="iOS" Value="Poppins-Medium" />
+              <On Platform="Tizen" Value="Poppins:style=Medium,Regular"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="PoppinsSemiBold"
-                        x:TypeArguments="x:String"
-                        iOS="Poppins-SemiBold"
-                        Android="Poppins-SemiBold.ttf#Poppins"
-                        WinPhone="/Assets/Fonts/Poppins-SemiBold.ttf#Poppins"/>
+            <OnPlatform x:Key="PoppinsRegular" x:TypeArguments="x:String">
+              <On Platform="Android" Value="Poppins-Regular.ttf#Poppins" />
+              <On Platform="WinPhone" Value= "/Assets/Fonts/Poppins-Regular.ttf#Poppins"/>
+              <On Platform="iOS" Value="Poppins-Regular" />
+              <On Platform="Tizen" Value="Poppins:style=Regular"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="FiraSansBold"
-                        x:TypeArguments="x:String"
-                        iOS="FiraSans-Bold"
-                        Android="FiraSans-Bold.ttf#Fira Sans"
-                        WinPhone="/Assets/Fonts/FiraSans-Bold.ttf#Fira Sans"/>
-            
-            <OnPlatform x:Key="FiraSansSemiBold"
-                        x:TypeArguments="x:String"
-                        iOS="FiraSans-SemiBold"
-                        Android="FiraSans-SemiBold.ttf#Fira Sans"
-                        WinPhone="/Assets/Fonts/FiraSans-SemiBold.ttf#Fira Sans"/>
-            
-            <OnPlatform x:Key="FiraSansRegular"
-                        x:TypeArguments="x:String"
-                        iOS="FiraSans-Regular"
-                        Android="FiraSans-Regular.ttf#Fira Sans"
-                        WinPhone="/Assets/Fonts/FiraSans-Regular.ttf#Fira Sans"/>
-            
-            <OnPlatform x:Key="LittleSize"
-                        x:TypeArguments="x:Double"
-                        iOS="11"
-                        Android="12"
-                        WinPhone="12"/>
+            <OnPlatform x:Key="PoppinsSemiBold" x:TypeArguments="x:String">
+              <On Platform="Tizen" Value="Poppins:style=SemiBold,Regular"/>
+              <On Platform="Android" Value="Poppins-SemiBold.ttf#Poppins" />
+              <On Platform="WinPhone" Value= "/Assets/Fonts/Poppins-SemiBold.ttf#Poppins"/>
+              <On Platform="iOS" Value="Poppins-SemiBold" />
+            </OnPlatform>
 
-            <OnPlatform x:Key="MidMediumSize"
-                        x:TypeArguments="x:Double"
-                        iOS="12"
-                        Android="14"
-                        WinPhone="14"/>
+            <OnPlatform x:Key="FiraSansBold" x:TypeArguments="x:String">
+              <On Platform="Android" Value="FiraSans-Bold.ttf#Fira Sans" />
+              <On Platform="WinPhone" Value= "/Assets/Fonts/FiraSans-Bold.ttf#Fira Sans"/>
+              <On Platform="iOS" Value="FiraSans-Bold" />
+              <On Platform="Tizen" Value="Fira:style=Bold,Regular"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="MediumSize"
-                        x:TypeArguments="x:Double"
-                        iOS="14"
-                        Android="16"
-                        WinPhone="16"/>
+            <OnPlatform x:Key="FiraSansSemiBold" x:TypeArguments="x:String">
+              <On Platform="Android" Value="FiraSans-SemiBold.ttf#Fira Sans" />
+              <On Platform="WinPhone" Value= "/Assets/Fonts/FiraSans-SemiBold.ttf#Fira Sans"/>
+              <On Platform="iOS" Value="FiraSans-SemiBold" />
+              <On Platform="Tizen" Value="Fira:style=SemiBold,Regular"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="LargeSize"
-                        x:TypeArguments="x:Double"
-                        iOS="16"
-                        Android="18"
-                        WinPhone="18"/>
+            <OnPlatform x:Key="FiraSansRegular" x:TypeArguments="x:String">
+              <On Platform="Android" Value="FiraSans-Regular.ttf#Fira Sans" />
+              <On Platform="WinPhone" Value= "/Assets/Fonts/FiraSans-Regular.ttf#Fira Sans"/>
+              <On Platform="iOS" Value="FiraSans-Regular" />
+              <On Platform="Tizen" Value="Fira:style=Regular"/>
+            </OnPlatform>
 
-            <OnPlatform x:Key="LargerSize"
-                        x:TypeArguments="x:Double"
-                        iOS="18"
-                        Android="20"
-                        WinPhone="20"/>
+            <OnPlatform x:Key="LittleSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="60" />
+                </On>
+                <On Platform="Android" Value="12" />
+                <On Platform="WinPhone" Value="12" />
+                <On Platform="iOS" Value="11" />
+            </OnPlatform>
 
-            <OnPlatform x:Key="BigSize"
-                        x:TypeArguments="x:Double"
-                        iOS="20"
-                        Android="24"
-                        WinPhone="24"/>
+            <OnPlatform x:Key="MidMediumSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="14" 
+                             Tablet="14" 
+                             TV="64" />
+                </On>
+                <On Platform="Android" Value="14" />
+                <On Platform="WinPhone" Value="14" />
+                <On Platform="iOS" Value="12" />
+            </OnPlatform>
 
-            <OnPlatform x:Key="ExtraBigSize"
-                      x:TypeArguments="x:Double"
-                      iOS="24"
-                      Android="32"
-                      WinPhone="32"/>
+            <OnPlatform x:Key="MediumSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="16" 
+                             Tablet="16" 
+                             TV="72" />
+                </On>
+                <On Platform="Android" Value="16" />
+                <On Platform="WinPhone" Value="16" />
+                <On Platform="iOS" Value="14" />
+            </OnPlatform>
 
-            <OnPlatform x:Key="HugeSize"
-                        x:TypeArguments="x:Double"
-                        iOS="32"
-                        Android="48"
-                        WinPhone="48"/>
-            
+            <OnPlatform x:Key="LargeSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="18" 
+                             Tablet="18" 
+                             TV="76" />
+                </On>
+                <On Platform="Android" Value="18" />
+                <On Platform="WinPhone" Value="18" />
+                <On Platform="iOS" Value="16" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="LargerSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="20" 
+                             Tablet="20" 
+                             TV="80" />
+                </On>
+                <On Platform="Android" Value="20" />
+                <On Platform="WinPhone" Value="20" />
+                <On Platform="iOS" Value="18" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="BigSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="24" 
+                             Tablet="24" 
+                             TV="88" />
+                </On>
+                <On Platform="Android" Value="24" />
+                <On Platform="WinPhone" Value="24" />
+                <On Platform="iOS" Value="20" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="ExtraBigSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="32" 
+                             Tablet="32" 
+                             TV="96" />
+                </On>
+                <On Platform="Android" Value="32" />
+                <On Platform="WinPhone" Value="32" />
+                <On Platform="iOS" Value="24" />
+            </OnPlatform>
+
+            <OnPlatform x:Key="HugeSize" x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="48" 
+                             Tablet="48" 
+                             TV="120" />
+                </On>
+                <On Platform="Android" Value="48" />
+                <On Platform="WinPhone" Value="48" />
+                <On Platform="iOS" Value="32" />
+            </OnPlatform>
+
             <!-- STYLES -->
             <Style x:Key="BaseLabelStyle" TargetType="{x:Type Label}">
             </Style>
@@ -257,6 +313,7 @@
                 <Setter Property="WidthRequest">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Tizen" Value="100" />
                             <On Platform="Android, iOS" Value="100" />
                             <On Platform="UWP" Value="300" />
                         </OnPlatform>

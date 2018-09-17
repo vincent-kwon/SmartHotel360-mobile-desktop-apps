@@ -98,6 +98,7 @@
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="simbol_logo" />
                             <On Platform="UWP" Value="Assets/simbol_logo.png" />
+                            <On Platform="Tizen" Value="simbol_logo.png" />
                         </OnPlatform>
                     </Image.Source>
                 </Image>
@@ -113,6 +114,7 @@
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="avatar" />
                             <On Platform="UWP" Value="Assets/avatar.png" />
+                            <On Platform="Tizen" Value="avatar.png" />
                         </OnPlatform>
                     </ffimageloading:CachedImage.LoadingPlaceholder>
                 </ffimageloading:CachedImage>

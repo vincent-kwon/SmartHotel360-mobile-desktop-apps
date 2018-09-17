@@ -10,6 +10,7 @@
              Title=" ">
     <ContentPage.Icon>
         <OnPlatform x:TypeArguments="FileImageSource">
+            <On Platform="Tizen" Value="ic_menu.png" />
             <On Platform="iOS" Value="ic_menu" />
         </OnPlatform>
     </ContentPage.Icon>
@@ -52,6 +53,7 @@
                     CacheDuration="30">>
                     <ffimageloading:CachedImage.LoadingPlaceholder>
                         <OnPlatform x:TypeArguments="ImageSource">
+                            <On Platform="Tizen" Value="avatar.png" />
                             <On Platform="Android, iOS" Value="avatar" />
                             <On Platform="UWP" Value="Assets/avatar.png" />
                         </OnPlatform>

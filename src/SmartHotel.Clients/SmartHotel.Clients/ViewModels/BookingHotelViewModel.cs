@@ -12,6 +12,7 @@ using SmartHotel.Clients.Core.Services.Booking;
 using SmartHotel.Clients.Core.Services.Authentication;
 using System.Collections.Generic;
 using System.Linq;
+using Tizen;
 
 namespace SmartHotel.Clients.Core.ViewModels
 {
@@ -203,11 +204,14 @@ namespace SmartHotel.Clients.Core.ViewModels
             {
                 var authenticatedUser = _authenticationService.AuthenticatedUser;
 
-                var booking = await DialogService.ShowConfirmAsync(
-                string.Format(Resources.DialogBookingMessage, Hotel.Name),
-                Resources.DialogBookingTitle,
-                Resources.DialogYes,
-                Resources.DialogNo);
+                // TO DO
+                //var booking = await DialogService.ShowConfirmAsync(
+                //string.Format(Resources.DialogBookingMessage, Hotel.Name),
+                //Resources.DialogBookingTitle,
+                //Resources.DialogYes,
+                //Resources.DialogNo);
+
+                var booking = true;
 
                 if (booking)
                 {
