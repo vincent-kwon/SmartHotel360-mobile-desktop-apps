@@ -12,27 +12,68 @@
             <Style x:Key="HotelImageStyle" 
                    TargetType="ffimageloading:CachedImage">
                 <Setter Property="Aspect" Value="AspectFill" />
-                <Setter Property="CacheType" Value="Disk" />
+                <Setter Property="CacheType" Value="All" />
                 <Setter Property="CacheDuration" Value="30" />
                 <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="HeightRequest" Value="84" />
-                <Setter Property="WidthRequest" Value="84" />
+                <Setter Property="HeightRequest" >
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="84" 
+                             Tablet="84" 
+                             TV="800" />
+                </Setter>
+                <Setter Property="WidthRequest">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="84" 
+                             Tablet="84" 
+                             TV="800" />
+                </Setter>
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, Android, UWP" Value="0"/>
+                        <On Platform="Tizen">
+                            <OnIdiom x:TypeArguments="Thickness"
+                                     Phone="0" 
+                                     Tablet="0" 
+                                     TV="30" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
             </Style>
             
             <Style x:Key="HotelTitleStyle" 
                    TargetType="Label"
                    BasedOn="{StaticResource FiraSansRegularLabelStyle}">
-                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+                <Setter Property="TextColor">
+                    <OnIdiom x:TypeArguments="Color"
+                                 Phone="{StaticResource BlackTextColor}" 
+                                 Tablet="{StaticResource BlackTextColor}" 
+                                 TV="{StaticResource WhiteColor}" />
+                </Setter>
                 <Setter Property="FontSize" Value="{StaticResource MediumSize}" />
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="LineBreakMode" Value="TailTruncation" />
-                <Setter Property="Margin" Value="12, -6, 12, 0" />
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="iOS, Android, UWP" Value="12, -6, 12, 0"/>
+                        <On Platform="Tizen">
+                            <OnIdiom x:TypeArguments="Thickness"
+                                     Phone="12, 0, 12, 0" 
+                                     Tablet="12, 0, 12, 0" 
+                                     TV="12, 12, 12, 0" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
             </Style>
 
             <Style x:Key="HotelSubTitleStyle" 
                    TargetType="Label"
                    BasedOn="{StaticResource FiraSansRegularLabelStyle}">
-                <Setter Property="TextColor" Value="{StaticResource BlackTextColor}" />
+                <Setter Property="TextColor">
+                    <OnIdiom x:TypeArguments="Color"
+                             Phone="{StaticResource BlackTextColor}" 
+                             Tablet="{StaticResource BlackTextColor}" 
+                             TV="{StaticResource WhiteColor}" />
+                </Setter>
                 <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
                 <Setter Property="LineBreakMode" Value="TailTruncation" />
                 <Setter Property="Margin" Value="12, 0" />
@@ -57,8 +98,18 @@
             <Style x:Key="RatingStyle" 
                    TargetType="controls:RatingControl">
                 <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="HeightRequest" Value="12" />
-                <Setter Property="WidthRequest" Value="100" />
+                <Setter Property="HeightRequest">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="50" />
+                </Setter>
+                <Setter Property="WidthRequest">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="100" 
+                             Tablet="100" 
+                             TV="300" />
+                </Setter>
                 <Setter Property="Margin" Value="6, 0, 0, 0" />
             </Style>
             
@@ -67,17 +118,36 @@
   <ContentView.Content>
         <Grid
             RowSpacing="0" 
-            HeightRequest="84"
             Margin="24, 24, 24, 0">
+            <Grid.HeightRequest>
+                <OnIdiom x:TypeArguments="x:Double"
+                         Phone="150" 
+                         Tablet="150" 
+                         TV="900" />
+            </Grid.HeightRequest>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition>
+                    <ColumnDefinition.Width>
+                        <OnPlatform x:TypeArguments="GridLength">
+                            <On Platform="iOS, Android, UWP" Value="*"/>
+                            <On Platform="Tizen" Value="Auto"/>
+                        </OnPlatform>
+                    </ColumnDefinition.Width>
+                </ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="16" />
+                <RowDefinition>
+                    <RowDefinition.Height>
+                        <OnPlatform x:TypeArguments="GridLength">
+                            <On Platform="iOS, Android, UWP" Value="16"/>
+                            <On Platform="Tizen" Value="Auto"/>
+                        </OnPlatform>
+                    </RowDefinition.Height>
+                </RowDefinition>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <ffimageloading:CachedImage
@@ -90,12 +160,14 @@
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android, iOS" Value="placeholder_2" />
                         <On Platform="UWP" Value="Assets/placeholder_2.png" />
+                        <On Platform="Tizen" Value="placeholder_2.png" />
                     </OnPlatform>
                 </ffimageloading:CachedImage.LoadingPlaceholder>
                 <ffimageloading:CachedImage.ErrorPlaceholder>
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android, iOS" Value="placeholder_2" />
                         <On Platform="UWP" Value="Assets/placeholder_2.png" />
+                        <On Platform="Tizen" Value="placeholder_2.png" />
                     </OnPlatform>
                 </ffimageloading:CachedImage.ErrorPlaceholder>
             </ffimageloading:CachedImage>
@@ -137,12 +209,14 @@
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android, iOS" Value="ic_star_active" />
                         <On Platform="UWP" Value="Assets/ic_star_active.png" />
+                        <On Platform="Tizen" Value="ic_star_active.png" />
                     </OnPlatform>
                 </controls:RatingControl.ImageFullStar>
                 <controls:RatingControl.ImageEmptyStar>
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="Android, iOS" Value="ic_star_normal" />
                         <On Platform="UWP" Value="Assets/ic_star_normal.png" />
+                        <On Platform="Tizen" Value="ic_star_normal.png" />
                     </OnPlatform>
                 </controls:RatingControl.ImageEmptyStar>
             </controls:RatingControl>

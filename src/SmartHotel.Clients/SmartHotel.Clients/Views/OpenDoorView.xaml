@@ -83,6 +83,7 @@
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="i_door_nfc" />
                             <On Platform="UWP" Value="Assets/i_door_nfc.png" />
+                            <On Platform="Tizen" Value="i_door_nfc.png" />
                         </OnPlatform>
                     </Image.Source>
                 </Image>

@@ -19,7 +19,7 @@ namespace SmartHotel.Clients.Core.ViewModels
         private readonly ILocationService _locationService;
 
         public SuggestionsViewModel(
-            ISuggestionService suggestionService, 
+            ISuggestionService suggestionService,
             ILocationService locationService)
         {
             _suggestionService = suggestionService;
@@ -51,7 +51,6 @@ namespace SmartHotel.Clients.Core.ViewModels
             try
             {
                 IsBusy = true;
-
                 var location = await _locationService.GetPositionAsync();
                 Suggestions = await _suggestionService.GetSuggestionsAsync(location.Latitude, location.Longitude);
                 CustomPins = new ObservableCollection<CustomPin>();
@@ -72,7 +71,7 @@ namespace SmartHotel.Clients.Core.ViewModels
 
                 if (!string.IsNullOrEmpty(httpEx.Message))
                 {
-                    await DialogService.ShowAlertAsync( 
+                    await DialogService.ShowAlertAsync(
                         string.Format(Resources.HttpRequestExceptionMessage, httpEx.Message),
                         Resources.HttpRequestExceptionTitle,
                         Resources.DialogOk);

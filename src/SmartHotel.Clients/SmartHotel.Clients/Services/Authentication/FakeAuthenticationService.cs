@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using SmartHotel.Clients.Core.Models;
+using System;
 
 namespace SmartHotel.Clients.Core.Services.Authentication
 {

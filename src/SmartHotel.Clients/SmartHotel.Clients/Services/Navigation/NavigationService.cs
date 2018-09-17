@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Tizen;
 
 namespace SmartHotel.Clients.Core.Services.Navigation
 {
@@ -30,14 +31,16 @@ namespace SmartHotel.Clients.Core.Services.Navigation
 
         public async Task InitializeAsync()
         {
-            if (await _authenticationService.UserIsAuthenticatedAndValidAsync())
-            {
-                await NavigateToAsync<MainViewModel>();
-            }
-            else
-            {
-                await NavigateToAsync<LoginViewModel>();
-            }
+            await _authenticationService.LoginWithMicrosoftAsync();
+            await NavigateToAsync<MainViewModel>();
+            //if (await _authenticationService.UserIsAuthenticatedAndValidAsync())
+            //{
+            //    await NavigateToAsync<MainViewModel>();
+            //}
+            //else
+            //{
+            //    await NavigateToAsync<LoginViewModel>();
+            //}
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
@@ -89,7 +92,8 @@ namespace SmartHotel.Clients.Core.Services.Navigation
         protected virtual async Task InternalNavigateToAsync(Type viewModelType, object parameter)
         {
             Page page = CreateAndBindPage(viewModelType, parameter);
-
+            Log.Debug("SmartHotel", page+" => "+parameter);
+             
             if (page is MainView)
             {
                 CurrentApplication.MainPage = page;
@@ -109,11 +113,16 @@ namespace SmartHotel.Clients.Core.Services.Navigation
 
                     if (currentPage.GetType() != page.GetType())
                     {
+                        if (Device.RuntimePlatform == Device.Tizen)
+                        {
+                            NavigationPage.SetHasNavigationBar(page, false);
+                        }
                         await navigationPage.PushAsync(page);
                     }
                 }
                 else
                 {
+                    NavigationPage.SetHasNavigationBar(page, false);
                     navigationPage = new CustomNavigationPage(page);
                     mainPage.Detail = navigationPage;
                 }
@@ -133,7 +142,6 @@ namespace SmartHotel.Clients.Core.Services.Navigation
                     CurrentApplication.MainPage = new CustomNavigationPage(page);
                 }
             }
-
             await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
         }
 

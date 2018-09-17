@@ -25,7 +25,7 @@
             <Style x:Key="NotificationSubTitleStyle" 
                    TargetType="Label"
                    BasedOn="{StaticResource FiraSansRegularLabelStyle}">
-                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontSize" Value="{StaticResource LittleSize}" />
                 <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
                 <Setter Property="LineBreakMode" Value="WordWrap" />
                 <Setter Property="Opacity" Value="0.8" />
@@ -62,10 +62,22 @@
                     Spacing="0">
                     <ffimageloading:CachedImage
                         Source="{Binding Type, Converter={StaticResource NotificationTypeToIconConverter}}"
-                        HeightRequest="48"
                         Aspect="AspectFit"
-                        VerticalOptions="Center"
-                        Margin="20" />
+                        VerticalOptions="Center">
+                        <ffimageloading:CachedImage.HeightRequest>
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="48" 
+                             Tablet="48" 
+                             TV="200" />
+                        </ffimageloading:CachedImage.HeightRequest>
+                        <ffimageloading:CachedImage.Margin>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="Tizen" Value="70" />
+                                <On Platform="Android, iOS" Value="20" />
+                                <On Platform="UWP" Value="20" />
+                            </OnPlatform>
+                        </ffimageloading:CachedImage.Margin>
+                    </ffimageloading:CachedImage>
                     <BoxView 
                         VerticalOptions="Fill"
                         BackgroundColor="{StaticResource WhiteColor}"

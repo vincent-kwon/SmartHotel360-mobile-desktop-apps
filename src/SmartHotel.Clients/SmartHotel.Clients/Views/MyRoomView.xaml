@@ -51,8 +51,13 @@
                    BasedOn="{StaticResource PoppinsRegularLabelStyle}">
                 <Setter Property="TextColor" 
                         Value="{StaticResource BlackTextColor}" />
-                <Setter Property="FontSize" 
-                        Value="{StaticResource MidMediumSize}" />
+                <Setter Property="FontSize">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="{StaticResource MidMediumSize}" 
+                             Tablet="{StaticResource MidMediumSize}" 
+                             Desktop="{StaticResource MidMediumSize}"
+                             TV="{StaticResource MediumSize}" />
+                </Setter>
                 <Setter Property="HorizontalTextAlignment" 
                         Value="Center" />
                 <Setter Property="HorizontalOptions" 
@@ -121,10 +126,16 @@
                    BasedOn="{StaticResource PoppinsRegularLabelStyle}">
                 <Setter Property="TextColor" 
                         Value="{StaticResource WhiteColor}" />
+                <Setter Property="FontSize" Value="{StaticResource MidMediumSize}"/>
                 <Setter Property="VerticalOptions" 
                         Value="Center" />
-                <Setter Property="Margin" 
-                        Value="2, 0" />
+                <Setter Property="Margin">
+                    <OnIdiom x:TypeArguments="Thickness"
+                             Phone="2, 0" 
+                             Tablet="2, 0" 
+                             Desktop="2, 0"
+                             TV="2, 0, 0, 10" />
+                </Setter>
             </Style>
 
             <Style x:Key="DisturbToggleButtonStyle" 
@@ -160,6 +171,7 @@
                 <Setter Property="Margin">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Tizen" Value="-10, 0" />
                             <On Platform="Android" Value="-10, 0" />
                             <On Platform="UWP, iOS" Value="0" />
                         </OnPlatform>
@@ -168,6 +180,7 @@
                 <Setter Property="WidthRequest">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Tizen" Value="110" />
                             <On Platform="Android" Value="110" />
                             <On Platform="UWP, iOS" Value="80" />
                         </OnPlatform>
@@ -194,6 +207,7 @@
             Command="{Binding OpenDoorCommand}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Tizen, iOS" Value="ic_card.png" />
                     <On Platform="Android, iOS" Value="ic_card" />
                     <On Platform="UWP" Value="Assets/ic_card.png" />
                 </OnPlatform>
@@ -228,6 +242,7 @@
                         Aspect="AspectFill">
                         <Image.Source>
                             <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Tizen" Value="hero_image_room.png" />
                                 <On Platform="Android, iOS" Value="hero_image_room" />
                                 <On Platform="UWP" Value="Assets/hero_image_room.png" />
                             </OnPlatform>
@@ -252,12 +267,14 @@
                             Style="{StaticResource DisturbToggleButtonStyle}">
                             <controls:ToggleButton.CheckedImage>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="switch_on.png" />
                                     <On Platform="Android, iOS" Value="switch_on" />
                                     <On Platform="UWP" Value="Assets/switch_on.png" />
                                 </OnPlatform>
                             </controls:ToggleButton.CheckedImage>
                             <controls:ToggleButton.UnCheckedImage>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="switch_off.png" />
                                     <On Platform="Android, iOS" Value="switch_off" />
                                     <On Platform="UWP" Value="Assets/switch_off.png" />
                                 </OnPlatform>
@@ -276,6 +293,7 @@
                             </Image.GestureRecognizers>
                             <Image.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="ic_check_out.png" />
                                     <On Platform="Android, iOS" Value="ic_check_out" />
                                     <On Platform="UWP" Value="Assets/ic_check_out.png" />
                                 </OnPlatform>
@@ -301,7 +319,14 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="62" />
+                            <RowDefinition>
+                                <RowDefinition.Height>
+                                    <OnIdiom x:TypeArguments="GridLength"
+                                             Phone="62" 
+                                             Tablet="62" 
+                                             TV="120" />
+                                </RowDefinition.Height>
+                            </RowDefinition>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid
@@ -388,7 +413,14 @@
                                 </Grid.Triggers>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
-                                    <RowDefinition Height="50" />
+                                    <RowDefinition>
+                                        <RowDefinition.Height>
+                                            <OnIdiom x:TypeArguments="GridLength"
+                                                     Phone="50" 
+                                                     Tablet="50" 
+                                                     TV="100" />
+                                        </RowDefinition.Height>
+                                    </RowDefinition>
                                 </Grid.RowDefinitions>
                                 <ScrollView
                                     Grid.Row="0">
@@ -407,12 +439,14 @@
                                             DisplayConverter="{StaticResource AmbientLightValueConverter}">
                                             <controls:CustomSlider.BackgroundImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="bg_slider_01.png" />
                                                     <On Platform="Android, iOS" Value="bg_slider_01" />
                                                     <On Platform="UWP" Value="Assets/bg_slider_01.png" />
                                                 </OnPlatform>
                                             </controls:CustomSlider.BackgroundImage>
                                             <controls:CustomSlider.ThumbImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="thumb_slider.png" />
                                                     <On Platform="Android, iOS" Value="thumb_slider" />
                                                     <On Platform="UWP" Value="Assets/thumb_slider.png" />
                                                 </OnPlatform>
@@ -428,12 +462,14 @@
                                             DisplayConverter="{StaticResource TemperatureValueConverter}">
                                             <controls:CustomSlider.BackgroundImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="bg_slider_02.png" />
                                                     <On Platform="Android, iOS" Value="bg_slider_02" />
                                                     <On Platform="UWP" Value="Assets/bg_slider_02.png" />
                                                 </OnPlatform>
                                             </controls:CustomSlider.BackgroundImage>
                                             <controls:CustomSlider.ThumbImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="thumb_slider.png" />
                                                     <On Platform="Android, iOS" Value="thumb_slider" />
                                                     <On Platform="UWP" Value="Assets/thumb_slider.png" />
                                                 </OnPlatform>
@@ -448,12 +484,14 @@
                                             Value="{Binding MusicVolume, Mode=TwoWay}">
                                             <controls:CustomSlider.BackgroundImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="bg_slider_03.png" />
                                                     <On Platform="Android, iOS" Value="bg_slider_03" />
                                                     <On Platform="UWP" Value="Assets/bg_slider_03.png" />
                                                 </OnPlatform>
                                             </controls:CustomSlider.BackgroundImage>
                                             <controls:CustomSlider.ThumbImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="thumb_slider.png" />
                                                     <On Platform="Android, iOS" Value="thumb_slider" />
                                                     <On Platform="UWP" Value="Assets/thumb_slider.png" />
                                                 </OnPlatform>
@@ -468,12 +506,14 @@
                                             Value="{Binding WindowBlinds, Mode=TwoWay}">
                                             <controls:CustomSlider.BackgroundImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="bg_slider_04.png" />
                                                     <On Platform="Android, iOS" Value="bg_slider_04" />
                                                     <On Platform="UWP" Value="Assets/bg_slider_04.png" />
                                                 </OnPlatform>
                                             </controls:CustomSlider.BackgroundImage>
                                             <controls:CustomSlider.ThumbImage>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="thumb_slider.png" />
                                                     <On Platform="Android, iOS" Value="thumb_slider" />
                                                     <On Platform="UWP" Value="Assets/thumb_slider.png" />
                                                 </OnPlatform>
@@ -493,6 +533,7 @@
                                             Margin="12">
                                             <Image.Source>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="ic_be_green.png" />
                                                     <On Platform="Android, iOS" Value="ic_be_green.png" />
                                                     <On Platform="UWP" Value="Assets/ic_be_green.png" />
                                                 </OnPlatform>
@@ -519,6 +560,7 @@
                                             Margin="12">
                                             <Image.Source>
                                                 <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="ic_be_green.png" />
                                                     <On Platform="Android, iOS" Value="ic_be_green.png" />
                                                     <On Platform="UWP" Value="Assets/ic_be_green.png" />
                                                 </OnPlatform>
@@ -566,16 +608,18 @@
                                     Checked="False"
                                     Animate="True">
                                     <controls:ToggleButton.WidthRequest>
-                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" />
+                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" TV="500" />
                                     </controls:ToggleButton.WidthRequest>
                                     <controls:ToggleButton.CheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_ice_on.png" />
                                             <On Platform="Android, iOS" Value="ic_ice_on.png" />
                                             <On Platform="UWP" Value="Assets/ic_ice_on.png" />
                                         </OnPlatform>
                                     </controls:ToggleButton.CheckedImage>
                                     <controls:ToggleButton.UnCheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_ice_off.png" />
                                             <On Platform="Android, iOS" Value="ic_ice_off.png" />
                                             <On Platform="UWP" Value="Assets/ic_ice_off.png" />
                                         </OnPlatform>
@@ -587,16 +631,18 @@
                                     Checked="False"
                                     Animate="True">
                                     <controls:ToggleButton.WidthRequest>
-                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" />
+                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" TV="500" />
                                     </controls:ToggleButton.WidthRequest>
                                     <controls:ToggleButton.CheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_toothbrush_on.png" />
                                             <On Platform="Android, iOS" Value="ic_toothbrush_on.png" />
                                             <On Platform="UWP" Value="Assets/ic_toothbrush_on.png" />
                                         </OnPlatform>
                                     </controls:ToggleButton.CheckedImage>
                                     <controls:ToggleButton.UnCheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_toothbrush_off.png" />
                                             <On Platform="Android, iOS" Value="ic_toothbrush_off.png" />
                                             <On Platform="UWP" Value="Assets/ic_toothbrush_off.png" />
                                         </OnPlatform>
@@ -608,16 +654,18 @@
                                     Checked="False"
                                     Animate="True">
                                     <controls:ToggleButton.WidthRequest>
-                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" />
+                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" TV="500" />
                                     </controls:ToggleButton.WidthRequest>
                                     <controls:ToggleButton.CheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_towels_on.png" />
                                             <On Platform="Android, iOS" Value="ic_towels_on.png" />
                                             <On Platform="UWP" Value="Assets/ic_towels_on.png" />
                                         </OnPlatform>
                                     </controls:ToggleButton.CheckedImage>
                                     <controls:ToggleButton.UnCheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen, iOS" Value="ic_towels_off.png" />
                                             <On Platform="Android, iOS" Value="ic_towels_off.png" />
                                             <On Platform="UWP" Value="Assets/ic_towels_off.png" />
                                         </OnPlatform>
@@ -630,16 +678,18 @@
                                     Checked="False"
                                     Animate="True">
                                     <controls:ToggleButton.WidthRequest>
-                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" />
+                                        <OnIdiom x:TypeArguments="x:Double" Desktop="150" Phone="110" Tablet="150" TV="500" />
                                     </controls:ToggleButton.WidthRequest>
                                     <controls:ToggleButton.CheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_leak_on.png" />
                                             <On Platform="Android, iOS" Value="ic_leak_on.png" />
                                             <On Platform="UWP" Value="Assets/ic_leak_on.png" />
                                         </OnPlatform>
                                     </controls:ToggleButton.CheckedImage>
                                     <controls:ToggleButton.UnCheckedImage>
                                         <OnPlatform x:TypeArguments="ImageSource">
+                                            <On Platform="Tizen" Value="ic_leak_off.png" />
                                             <On Platform="Android, iOS" Value="ic_leak_off.png" />
                                             <On Platform="UWP" Value="Assets/ic_leak_off.png" />
                                         </OnPlatform>
@@ -656,6 +706,7 @@
                                 </Image.GestureRecognizers>
                                 <Image.Source>
                                     <OnPlatform x:TypeArguments="ImageSource">
+                                        <On Platform="Tizen" Value="illustratrion_bot.png" />
                                         <On Platform="Android, iOS" Value="illustratrion_bot" />
                                         <On Platform="UWP" Value="Assets/illustratrion_bot.png" />
                                     </OnPlatform>
@@ -673,16 +724,36 @@
                                         </Trigger.EnterActions>
                                     </Trigger>
                                 </Grid.Triggers>
-                                <Image
-                                    Aspect="AspectFill">
+                                <Image>
+                                    <Image.Aspect>
+                                        <OnIdiom x:TypeArguments="Aspect"
+                                                 Phone="AspectFill" 
+                                                 Tablet="AspectFill" 
+                                                 TV="AspectFit" />
+                                    </Image.Aspect>
                                     <Image.Source>
                                         <OnIdiom x:TypeArguments="ImageSource">
                                             <OnIdiom.Phone>
-                                                <OnPlatform x:TypeArguments="ImageSource" iOS="map" Android="map" WinPhone="Assets/map.png" />
+                                                <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="map.png" />
+                                                    <On Platform="Android, iOS" Value="map" />
+                                                    <On Platform="UWP" Value="Assets/map.png" />
+                                                </OnPlatform>
                                             </OnIdiom.Phone>
                                             <OnIdiom.Desktop>
-                                                <OnPlatform x:TypeArguments="ImageSource" iOS="map" Android="map" WinPhone="Assets/map_desktop.png" />
+                                                <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="map.png" />
+                                                    <On Platform="Android, iOS" Value="map" />
+                                                    <On Platform="UWP" Value="Assets/map_desktop.png" />
+                                                </OnPlatform>
                                             </OnIdiom.Desktop>
+                                            <OnIdiom.TV>
+                                                <OnPlatform x:TypeArguments="ImageSource">
+                                                    <On Platform="Tizen" Value="map.png" />
+                                                    <On Platform="Android, iOS" Value="map" />
+                                                    <On Platform="UWP" Value="Assets/map.png" />
+                                                </OnPlatform>
+                                            </OnIdiom.TV>
                                         </OnIdiom>
                                     </Image.Source>
                                 </Image>

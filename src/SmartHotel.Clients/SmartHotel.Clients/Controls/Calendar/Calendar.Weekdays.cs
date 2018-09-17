@@ -60,13 +60,13 @@ namespace SmartHotel.Clients.Core.Controls
 		#region WeekdaysFontSize
 
 		public static readonly BindableProperty WeekdaysFontSizeProperty =
-			BindableProperty.Create(nameof(WeekdaysFontSize), typeof(double), typeof(Calendar), 18.0,
+			BindableProperty.Create(nameof(WeekdaysFontSize), typeof(double), typeof(Calendar), (Device.Idiom == TargetIdiom.TV) ? 60 :18.0,
                 propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeWeekdaysFontSize((double)newValue, (double)oldValue));
 
 		protected void ChangeWeekdaysFontSize(double newValue, double oldValue)
 		{
 			if (Math.Abs(newValue - oldValue) < 0.01) return;
-			dayLabels.ForEach(l => l.FontSize = newValue);
+			dayLabels.ForEach(l => l.FontSize = (Device.Idiom == TargetIdiom.TV) ? 60.0 : newValue);
 		}
 
 		/// <summary>
