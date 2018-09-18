@@ -12,7 +12,7 @@
           <OnIdiom x:TypeArguments="x:Double"
              Phone="60"
              Tablet="60"
-             TV="120" />
+             TV="150" />
         </Setter>
         <Setter Property="Aspect" Value="AspectFit" />
         <Setter Property="HorizontalOptions" Value="Center" />
@@ -30,12 +30,22 @@
     </ResourceDictionary>
   </ContentView.Resources>
   <ContentView.Content>
-    <Grid
-        Margin="0, 0, 12, 0">
-      <Grid.RowDefinitions>
-        <RowDefinition Height="Auto" />
-        <RowDefinition Height="*" />
-      </Grid.RowDefinitions>
+    <Grid>
+        <Grid.Margin>
+            <OnPlatform x:TypeArguments="Thickness">
+                <On Platform="Android, iOS, UWP" Value="0, 0, 12, 0" />
+                <On Platform="Tizen" >
+                    <OnIdiom x:TypeArguments="Thickness"
+                             Phone="0, 0, 12, 0" 
+                             Tablet="0, 0, 12, 0" 
+                             TV="0, 30, 40, 30" />
+                </On>
+            </OnPlatform>
+        </Grid.Margin>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
       <Image
           Grid.Row="0"
           Source="{Binding Name, Converter={StaticResource ServiceNameToIconConverter}}"

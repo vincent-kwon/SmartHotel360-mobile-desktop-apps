@@ -115,7 +115,12 @@
                 <Setter Property="TranslationY">
                     <OnPlatform x:TypeArguments="x:Double">
                         <On Platform="Android, iOS, UWP" Value="-14" />
-                        <On Platform="Tizen" Value="-14" />
+                        <On Platform="Tizen" >
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="-14" 
+                             Tablet="-14" 
+                             TV="-30" />
+                        </On>
                     </OnPlatform>
                 </Setter>
                 <Setter Property="Padding">
@@ -141,7 +146,14 @@
                 BackgroundColor="{StaticResource WhiteColor}"
                 RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2.4*" />
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnIdiom x:TypeArguments="GridLength"
+                                 Phone="2.4*" 
+                                 Tablet="2.4*" 
+                                 TV="3.4*" />
+                        </RowDefinition.Height>
+                    </RowDefinition>
                     <RowDefinition>
                         <RowDefinition.Height>
                             <OnPlatform x:TypeArguments="GridLength">
@@ -241,31 +253,31 @@
                              <OnIdiom x:TypeArguments="x:Double"
                              Phone="12" 
                              Tablet="12" 
-                             TV="54" />
+                             TV="60" />
                         </controls:Calendar.WeekdaysFontSize>
                         <controls:Calendar.DatesFontSize>
                             <OnIdiom x:TypeArguments="x:Double"
                              Phone="12" 
                              Tablet="12" 
-                             TV="54" />
+                             TV="60" />
                         </controls:Calendar.DatesFontSize>
                         <controls:Calendar.SelectedFontSize>
                             <OnIdiom x:TypeArguments="x:Double"
                              Phone="12" 
                              Tablet="12" 
-                             TV="54" />
+                             TV="60" />
                         </controls:Calendar.SelectedFontSize>
                         <controls:Calendar.DisabledFontSize>
                             <OnIdiom x:TypeArguments="x:Double"
                              Phone="12" 
                              Tablet="12" 
-                             TV="54" />
+                             TV="60" />
                         </controls:Calendar.DisabledFontSize>
                         <controls:Calendar.TitleLabelFontSize>
                             <OnIdiom x:TypeArguments="x:Double"
                              Phone="20" 
                              Tablet="20" 
-                             TV="60" />
+                             TV="66" />
                         </controls:Calendar.TitleLabelFontSize>
                         <controls:Calendar.SelectedBackgroundImage>
                             <OnPlatform x:TypeArguments="FileImageSource">

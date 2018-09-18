@@ -63,18 +63,18 @@
                     <ffimageloading:CachedImage
                         Source="{Binding Type, Converter={StaticResource NotificationTypeToIconConverter}}"
                         Aspect="AspectFit"
-                        VerticalOptions="Center"
-                        Margin="20">
+                        VerticalOptions="Center">
                         <ffimageloading:CachedImage.HeightRequest>
                             <OnIdiom x:TypeArguments="x:Double"
                              Phone="48" 
                              Tablet="48" 
-                             TV="96" />
+                             TV="200" />
                         </ffimageloading:CachedImage.HeightRequest>
                         <ffimageloading:CachedImage.Margin>
                             <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS, Android, UWP" Value="20"/>
-                                <On Platform="Tizen" Value="0"/>
+                                <On Platform="Tizen" Value="70" />
+                                <On Platform="Android, iOS" Value="20" />
+                                <On Platform="UWP" Value="20" />
                             </OnPlatform>
                         </ffimageloading:CachedImage.Margin>
                     </ffimageloading:CachedImage>

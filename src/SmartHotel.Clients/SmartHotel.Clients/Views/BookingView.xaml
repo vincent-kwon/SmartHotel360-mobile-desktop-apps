@@ -63,8 +63,17 @@
                         Value="Start" />
                 <Setter Property="VerticalOptions"
                         Value="Start" />
-                <Setter Property="TranslationY"
-                        Value="-14" />
+                <Setter Property="TranslationY">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, iOS, UWP" Value="-14" />
+                        <On Platform="Tizen" >
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="-14" 
+                             Tablet="-14" 
+                             TV="-30" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
                 <Setter Property="Padding">
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="Android, iOS" Value="10, 0" />
@@ -171,7 +180,14 @@
                 Grid.Row="1"
                 RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2.4*" />
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnIdiom x:TypeArguments="GridLength"
+                                 Phone="2.4*" 
+                                 Tablet="2.4*" 
+                                 TV="3.4*" />
+                        </RowDefinition.Height>
+                    </RowDefinition>
                     <RowDefinition Height="7.6*" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>

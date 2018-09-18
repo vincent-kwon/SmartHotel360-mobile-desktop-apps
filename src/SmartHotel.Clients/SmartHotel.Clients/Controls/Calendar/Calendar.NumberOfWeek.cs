@@ -58,14 +58,14 @@ namespace SmartHotel.Clients.Core.Controls
 		#region NumberOfWeekFontSize
 
 		public static readonly BindableProperty NumberOfWeekFontSizeProperty =
-			BindableProperty.Create(nameof(NumberOfWeekFontSize), typeof(double), typeof(Calendar), (Device.Idiom == TargetIdiom.TV) ? 54.0 : 14.0,
+			BindableProperty.Create(nameof(NumberOfWeekFontSize), typeof(double), typeof(Calendar), (Device.Idiom == TargetIdiom.TV) ? 60.0 : 14.0,
 									propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeNumberOfWeekFontSize((double)newValue, (double)oldValue));
 
 		protected void ChangeNumberOfWeekFontSize(double newValue, double oldValue)
 		{
 			if (Math.Abs(newValue - oldValue) < 0.01) return;
 			WeekNumbers?.ForEach((obj) => obj.WidthRequest = newValue*( Device.RuntimePlatform == Device.iOS ? 1.5 : 2.2));
-			weekNumberLabels.ForEach(l => l.FontSize = (Device.Idiom == TargetIdiom.TV) ? 54 : newValue);
+			weekNumberLabels.ForEach(l => l.FontSize = (Device.Idiom == TargetIdiom.TV) ? 60 : newValue);
 		}
 
 		/// <summary>
@@ -198,7 +198,7 @@ namespace SmartHotel.Clients.Core.Controls
 				{
 					var label = new Label
 					{
-						FontSize = (Device.Idiom == TargetIdiom.TV) ? 54.0 : TitleLabel.FontSize,
+						FontSize = (Device.Idiom == TargetIdiom.TV) ? 60 : TitleLabel.FontSize,
 						VerticalTextAlignment = TitleLabel.VerticalTextAlignment,
 						HorizontalTextAlignment = TitleLabel.HorizontalTextAlignment,
 						FontAttributes = TitleLabel.FontAttributes,
@@ -248,7 +248,7 @@ namespace SmartHotel.Clients.Core.Controls
                             VerticalTextAlignment = TextAlignment.Center,
 							BackgroundColor = WeekdaysBackgroundColor,
 							TextColor = WeekdaysTextColor,
-							FontSize = (Device.Idiom == TargetIdiom.TV) ? 54 : WeekdaysFontSize,
+							FontSize = (Device.Idiom == TargetIdiom.TV) ? 60 : WeekdaysFontSize,
 							FontFamily = WeekdaysFontFamily,
 							FontAttributes = WeekdaysFontAttributes
 						});

@@ -46,8 +46,19 @@
                     Grid.RowSpan="2"
                     Source="{Binding Type, Converter={StaticResource NotificationTypeToIconConverter}, ConverterParameter=_2}"
                     Aspect="AspectFit"
-                    VerticalOptions="Start"
-                    Margin="5">
+                    VerticalOptions="Start">
+                    <Image.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="Thickness"
+                                         Phone="5" 
+                                         Tablet="5" 
+                                         TV="30" />
+                            </On>
+                            <On Platform="Android, iOS" Value="5" />
+                            <On Platform="UWP" Value="5" />
+                        </OnPlatform>
+                    </Image.Margin>
                     <Image.HeightRequest>
                         <OnIdiom x:TypeArguments="x:Double"
                              Phone="32" 
@@ -78,7 +89,12 @@
                     Margin="5">
                     <Image.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Tizen" Value="36" />
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="x:Double"
+                                         Phone="36" 
+                                         Tablet="36" 
+                                         TV="80" />
+                            </On>
                             <On Platform="Android" Value="36" />
                             <On Platform="UWP" Value="32" />
                             <On Platform="iOS" Value="28" />

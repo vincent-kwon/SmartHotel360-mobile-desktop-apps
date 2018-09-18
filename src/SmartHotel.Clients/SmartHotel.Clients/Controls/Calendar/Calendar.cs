@@ -15,7 +15,7 @@ namespace SmartHotel.Clients.Core.Controls
         List<Label> TitleLabels;
         StackLayout MainView, ContentView;
         public static double GridSpace = 0;
-        public static double _CalendarButtonSize = 230;
+        public static double _CalendarButtonSize = 270;
 
         public Calendar()
         {
@@ -79,7 +79,7 @@ namespace SmartHotel.Clients.Core.Controls
                 Padding = 0,
                 VerticalOptions = LayoutOptions.Start,
                 Orientation = StackOrientation.Horizontal,
-                HeightRequest = (Device.Idiom == TargetIdiom.TV) ? 150 : 50,
+                HeightRequest = (Device.Idiom == TargetIdiom.TV) ? 200 : 50,
                 Children = { TitleLeftArrow, TitleLabel, TitleRightArrow }
             };
 
