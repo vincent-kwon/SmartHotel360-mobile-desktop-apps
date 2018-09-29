@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
+using Xamarin.Forms.Xaml;
+using System.Collections.Generic;
+using Tizen;
+
 namespace SmartHotel.Clients.Core.ViewModels
 {
     public class MyRoomViewModel : ViewModelBase
@@ -179,7 +183,12 @@ namespace SmartHotel.Clients.Core.ViewModels
 
         private Task CheckoutAsync()
         {
-            return NavigationService.NavigateToPopupAsync<CheckoutViewModel>(true);
+            AppSettings.HasBooking = false;
+
+            MessagingCenter.Send(this, MessengerKeys.CheckoutRequested);
+            _analyticService.TrackEvent("Checkout");
+
+            return NavigationService.NavigateToAsync<HomeViewModel>(true);
         }
 
         private async Task OpenBotAsync()
