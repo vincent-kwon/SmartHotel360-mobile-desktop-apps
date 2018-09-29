@@ -111,7 +111,7 @@ namespace SmartHotel.Clients.Core.Controls
                 Value = Value,
                 Opacity = Device.RuntimePlatform != Device.iOS ? 0 : 0.011,
                 HeightRequest = 24,
-                VerticalOptions = LayoutOptions.Start
+                VerticalOptions = LayoutOptions.Start,
             };
 
             SliderControl.ValueChanged += (sender, args) =>
@@ -127,10 +127,10 @@ namespace SmartHotel.Clients.Core.Controls
                 Margin = new Thickness(
                     -content.Padding.Left / 2,
                     Device.RuntimePlatform == Device.UWP ? 8 : -5,
-                    -content.Padding.Right / 2, 
+                    -content.Padding.Right / 2,
                     0),
                 Aspect = Device.Idiom == TargetIdiom.Desktop ? Aspect.AspectFill : Aspect.AspectFit,
-                HeightRequest = Device.Idiom == TargetIdiom.Desktop ? 12 : 18,
+                HeightRequest = Device.Idiom == TargetIdiom.Desktop ? 12 : (TargetIdiom.TV == Device.Idiom ? 100 : 18),
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 InputTransparent = true
@@ -143,14 +143,15 @@ namespace SmartHotel.Clients.Core.Controls
             {
                 Spacing = 0,
                 HorizontalOptions = LayoutOptions.Start,
-                InputTransparent = true
+                InputTransparent = true,
+                Margin = (Device.RuntimePlatform == Device.Tizen ? new Thickness(80, 0, 0, 0) : new Thickness(0))
             };
 
             ThumbImageControl = new Image
             {
                 Aspect = Aspect.AspectFit,
                 HorizontalOptions = LayoutOptions.Center,
-                WidthRequest = Device.RuntimePlatform == Device.UWP ? 28 : 20,
+                WidthRequest = Device.RuntimePlatform == Device.UWP ? 28 : ((Device.RuntimePlatform == Device.Tizen) && (TargetIdiom.TV == Device.Idiom) ? 100 : 20),
                 InputTransparent = true
             };
 
@@ -163,8 +164,9 @@ namespace SmartHotel.Clients.Core.Controls
             {
                 Margin = new Thickness(0, -6, 0, 0),
                 Style = Application.Current.Resources["PoppinsMediumLabelStyle"] as Style,
-                FontSize = (Application.Current.Resources["MidMediumSize"] as Double?) ?? 12.0,
-                HorizontalOptions = LayoutOptions.Center
+                FontSize = (Application.Current.Resources["MidMediumSize"] as Double?) ?? ((TargetIdiom.TV == Device.Idiom) ? 50 : 12.0),
+                HorizontalOptions = LayoutOptions.Center,
+                TextColor = (TargetIdiom.TV == Device.Idiom) ? Color.Black : Color.White,
             };
 
             UpdateDisplayValue();

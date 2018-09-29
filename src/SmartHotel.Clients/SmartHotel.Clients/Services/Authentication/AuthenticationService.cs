@@ -48,11 +48,11 @@ namespace SmartHotel.Clients.Core.Services.Authentication
                 var result = await App.AuthenticationClient.AcquireTokenAsync(
                   new string[] { AppSettings.B2cClientId },
                   string.Empty,
-                  UiOptions.SelectAccount,
+                  UIBehavior.SelectAccount,
                   string.Empty,
                   null,
-                  $"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}",
-                  AppSettings.B2cPolicy);
+                  $"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}");
+                
 
                 Models.User user = AuthenticationResultHelper.GetUserFromResult(result);
                 user.AvatarUrl = _avatarProvider.GetAvatarUrl(user.Email);
@@ -63,7 +63,7 @@ namespace SmartHotel.Clients.Core.Services.Authentication
             }
             catch (MsalException ex)
             {
-                if (ex.ErrorCode != MsalError.AuthenticationCanceled)
+                if (ex.ErrorCode != MsalClientException.AuthenticationCanceledError)
                 {
                     System.Diagnostics.Debug.WriteLine($"Error with MSAL authentication: {ex}");
                     throw new ServiceAuthenticationException();
@@ -89,12 +89,11 @@ namespace SmartHotel.Clients.Core.Services.Authentication
 
                 try
                 {
-                    var tokenCache = App.AuthenticationClient.UserTokenCache;
+                    var user = App.AuthenticationClient.GetUser(AuthenticatedUser.Id);
                     AuthenticationResult ar = await App.AuthenticationClient.AcquireTokenSilentAsync(
                         new string[] { AppSettings.B2cClientId },
-                        AuthenticatedUser.Id,
+                        user,
                         $"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}",
-                        AppSettings.B2cPolicy,
                         true);
                     SaveAuthenticationResult(ar);
 

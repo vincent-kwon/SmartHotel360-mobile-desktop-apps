@@ -14,7 +14,20 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
-                <RowDefinition Height="240" />
+                <RowDefinition>
+                    <RowDefinition.Height>
+                        <OnPlatform x:TypeArguments="GridLength">
+                            <On Platform="iOS" Value="240" />
+                            <On Platform="Android, UWP" Value="240" />
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="GridLength"
+                                         Phone="240" 
+                                         Tablet="240" 
+                                         TV="720" />
+                            </On>
+                        </OnPlatform>
+                    </RowDefinition.Height>
+                </RowDefinition>
             </Grid.RowDefinitions>
             <controls:iOSStatusBarBackground />
             <AbsoluteLayout

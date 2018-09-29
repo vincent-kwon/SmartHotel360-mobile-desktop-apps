@@ -40,8 +40,6 @@ namespace SmartHotel.Clients.Core.ViewModels.Base
             _containerBuilder.RegisterType<DialogService>().As<IDialogService>();
             _containerBuilder.RegisterType<NavigationService>().As<INavigationService>();
             _containerBuilder.RegisterType<FakeChartService>().As<IChartService>();
-            _containerBuilder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
-            _containerBuilder.RegisterType<LocationService>().As<ILocationService>();
             _containerBuilder.RegisterType<OpenUriService>().As<IOpenUriService>();
             _containerBuilder.RegisterType<RequestService>().As<IRequestService>();
             _containerBuilder.RegisterType<DefaultBrowserCookiesService>().As<IBrowserCookiesService>();
@@ -50,6 +48,8 @@ namespace SmartHotel.Clients.Core.ViewModels.Base
 
             if (AppSettings.UseFakes)
             {
+                _containerBuilder.RegisterType<FakeAuthenticationService>().As<IAuthenticationService>();
+                _containerBuilder.RegisterType<FakeLocationService>().As<ILocationService>();
                 _containerBuilder.RegisterType<FakeBookingService>().As<IBookingService>();
                 _containerBuilder.RegisterType<FakeHotelService>().As<IHotelService>();
                 _containerBuilder.RegisterType<FakeNotificationService>().As<INotificationService>();
@@ -57,6 +57,8 @@ namespace SmartHotel.Clients.Core.ViewModels.Base
             }
             else
             {
+                _containerBuilder.RegisterType<AuthenticationService>().As<IAuthenticationService>();
+                _containerBuilder.RegisterType<LocationService>().As<ILocationService>();
                 _containerBuilder.RegisterType<BookingService>().As<IBookingService>();
                 _containerBuilder.RegisterType<HotelService>().As<IHotelService>();
                 _containerBuilder.RegisterType<NotificationService>().As<INotificationService>();

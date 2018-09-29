@@ -38,8 +38,17 @@
                    BasedOn="{StaticResource WhenTextStyle}">
                 <Setter Property="FontSize" 
                         Value="{StaticResource MediumSize}" />
-                <Setter Property="Margin" 
-                        Value="24, 0, 0, 60" />
+                <Setter Property="Margin">
+                    <OnPlatform x:TypeArguments="Thickness">
+                        <On Platform="Android, iOS, UWP" Value="24, 0, 0, 60" />
+                        <On Platform="Tizen" >
+                            <OnIdiom x:TypeArguments="Thickness"
+                             Phone="24, 0, 0, 60" 
+                             Tablet="24, 0, 0, 60" 
+                             TV="24, 0, 0, 150" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
             </Style>
 
             <Style x:Key="SearchPanelStyle" 
@@ -86,19 +95,38 @@
                     Value="True" />
                 <Setter Property="CornerRadius"
                     Value="4" />
-                <Setter Property="HeightRequest" 
-                        Value="48" />
+                <Setter Property="HeightRequest">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, iOS, UWP" Value="48" />
+                        <On Platform="Tizen" >
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="48" 
+                             Tablet="48" 
+                             TV="120" />
+                        </On>
+                    </OnPlatform>
+                </Setter> 
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource WhiteColor}" />
                 <Setter Property="VerticalOptions"
                         Value="Start" />
                 <Setter Property="VerticalOptions"
                         Value="Start" />
-                <Setter Property="TranslationY"
-                        Value="-14" />
+                <Setter Property="TranslationY">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, iOS, UWP" Value="-14" />
+                        <On Platform="Tizen" >
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="-14" 
+                             Tablet="-14" 
+                             TV="-30" />
+                        </On>
+                    </OnPlatform>
+                </Setter>
                 <Setter Property="Padding">
                     <OnPlatform x:TypeArguments="Thickness">
                         <On Platform="Android, iOS" Value="10, 0" />
+                        <On Platform="Tizen" Value="10, 5" />
                     </OnPlatform>
                 </Setter>
             </Style>
@@ -118,8 +146,28 @@
                 BackgroundColor="{StaticResource WhiteColor}"
                 RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="2.4*" />
-                    <RowDefinition Height="7.6*" />
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnIdiom x:TypeArguments="GridLength"
+                                 Phone="2.4*" 
+                                 Tablet="2.4*" 
+                                 TV="3.4*" />
+                        </RowDefinition.Height>
+                    </RowDefinition>
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength">
+                                <On Platform="iOS" Value="7.6*" />
+                                <On Platform="Android, UWP" Value="7.6*" />
+                                <On Platform="Tizen">
+                                    <OnIdiom x:TypeArguments="GridLength"
+                                             Phone="7.6*" 
+                                             Tablet="7.6*" 
+                                             TV="7.6*" />
+                                </On>
+                            </OnPlatform>
+                        </RowDefinition.Height>
+                    </RowDefinition>
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <controls:iOSStatusBarBackground />
@@ -131,6 +179,7 @@
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="img_header_background_1" />
                             <On Platform="UWP" Value="Assets/img_header_background_1.png" />
+                            <On Platform="Tizen" Value="img_header_background_1.png" />
                         </OnPlatform>
                     </Image.Source>
                 </Image>
@@ -142,50 +191,48 @@
                     Grid.Row="0"
                     Text="When"
                     Style="{StaticResource WhenTextStyle}"/>
-                <StackLayout   
-                    Grid.Row="1">
-                    <StackLayout.Spacing>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="Android" Value="1" />
-                            <On Platform="iOS, UWP" Value="8" />
-                        </OnPlatform>
-                    </StackLayout.Spacing>
-                    <controls:ButtonFrame
-                        Style="{StaticResource DateRangeFrameStyle}">
-                        <Grid
+                <controls:ButtonFrame
+                    Grid.Row="1"
+                    Style="{StaticResource DateRangeFrameStyle}">
+                    <Grid
                             Style="{StaticResource SearchPanelStyle}">
-                            <StackLayout
+                        <StackLayout
                                 Orientation="Horizontal">
-                                <Label
+                            <Label
                                     Text="{Binding From, StringFormat='{0:ddd, MMM dd}'}"
                                     Margin="12, 0, 0, 0"
                                     Style="{StaticResource RangeTextStyle}"/>
-                                <Label
+                            <Label
                                     Text="-"  
                                     Style="{StaticResource RangeTextStyle}"/>
-                                <Label
+                            <Label
                                     Text="{Binding Until, StringFormat='{0:ddd, MMM dd}'}"
                                     Style="{StaticResource RangeTextStyle}"/>
-                            </StackLayout>
-                        </Grid>
-                    </controls:ButtonFrame>
-                </StackLayout>
+                        </StackLayout>
+                    </Grid>
+                </controls:ButtonFrame>
                 <!-- Calendar -->
                 <Grid
-                    Grid.Row="1"
-                    Margin="12, 48, 12, 12">
+                    Grid.Row="1">
+                    <Grid.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="Thickness"
+                                         Phone="12, 48, 12, 12" 
+                                         Tablet="12, 48, 12, 12" 
+                                         TV="12, 160, 12, 12" />
+                            </On>
+                            <On Platform="Android, UWP" Value="12, 48, 12, 12" />
+                            <On Platform="iOS" Value="12, 48, 12, 12" />
+                        </OnPlatform>
+                    </Grid.Margin>
                     <controls:Calendar 
                         x:Name="Calendar"
                         TranslationY="150"
                         SelectedDates="{Binding Dates, Mode=TwoWay}"
                         StartDay="Sunday" 
-                        DatesFontSize="12"
-                        SelectedFontSize="12"
-                        WeekdaysFontSize="12"
-                        TitleLabelFontSize="20"
                         SelectedBorderWidth="0"
                         BorderWidth="0"
-                        DisabledFontSize="12"
                         DisabledBorderWidth="6"
                         EnableTitleMonthYearView="True"
                         WeekdaysShow="True"
@@ -202,28 +249,62 @@
                         SelectRange="True"
                         DateCommand="{Binding SelectedDateCommand}"
                         HorizontalOptions="Center">
+                        <controls:Calendar.WeekdaysFontSize>
+                             <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="60" />
+                        </controls:Calendar.WeekdaysFontSize>
+                        <controls:Calendar.DatesFontSize>
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="60" />
+                        </controls:Calendar.DatesFontSize>
+                        <controls:Calendar.SelectedFontSize>
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="60" />
+                        </controls:Calendar.SelectedFontSize>
+                        <controls:Calendar.DisabledFontSize>
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="60" />
+                        </controls:Calendar.DisabledFontSize>
+                        <controls:Calendar.TitleLabelFontSize>
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="20" 
+                             Tablet="20" 
+                             TV="66" />
+                        </controls:Calendar.TitleLabelFontSize>
                         <controls:Calendar.SelectedBackgroundImage>
                             <OnPlatform x:TypeArguments="FileImageSource">
                                 <On Platform="Android, iOS" Value="ball" />
                                 <On Platform="UWP" Value="Assets/ball.png" />
+                                <On Platform="Tizen" Value="ball.png" />
                             </OnPlatform>
                         </controls:Calendar.SelectedBackgroundImage>
                         <controls:Calendar.SelectedRangeBackgroundImage>
                             <OnPlatform x:TypeArguments="FileImageSource">
                                 <On Platform="Android, iOS" Value="selected" />
                                 <On Platform="UWP" Value="Assets/selected.png" />
+                                <On Platform="Tizen" Value="selected.png" />
                             </OnPlatform>
                         </controls:Calendar.SelectedRangeBackgroundImage>
                         <controls:Calendar.FirstSelectedBackgroundImage>
                             <OnPlatform x:TypeArguments="FileImageSource">
                                 <On Platform="Android, iOS" Value="ball_left" />
                                 <On Platform="UWP" Value="Assets/ball_left.png" />
+                                <On Platform="Tizen" Value="ball_left.png" />
                             </OnPlatform>
                         </controls:Calendar.FirstSelectedBackgroundImage>
                         <controls:Calendar.LastSelectedBackgroundImage>
                             <OnPlatform x:TypeArguments="FileImageSource">
                                 <On Platform="Android, iOS" Value="ball_right" />
                                 <On Platform="UWP" Value="Assets/ball_right.png" />
+                                <On Platform="Tizen" Value="ball_right.png" />
                             </OnPlatform>
                         </controls:Calendar.LastSelectedBackgroundImage>
                     </controls:Calendar>

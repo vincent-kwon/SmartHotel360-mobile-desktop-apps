@@ -65,8 +65,8 @@ namespace SmartHotel.Clients.Core.ViewModels
                 
                 IsNextEnabled = string.IsNullOrEmpty(_suggestion) ? false : true;
 
-                var dismissKeyboardService = DependencyService.Get<IDismissKeyboardService>();
-                dismissKeyboardService.DismissKeyboard();
+                //var dismissKeyboardService = DependencyService.Get<IDismissKeyboardService>();
+                //dismissKeyboardService.DismissKeyboard();
 
                 OnPropertyChanged();
             }

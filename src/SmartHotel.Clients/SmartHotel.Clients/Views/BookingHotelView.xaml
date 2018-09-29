@@ -35,8 +35,20 @@
                         Value="{StaticResource MediumSize}" />
                 <Setter Property="LineBreakMode" 
                         Value="TailTruncation" />
-                <Setter Property="HeightRequest" 
-                        Value="36" />
+                <Setter Property="HeightRequest">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="x:Double"
+                                         Phone="36" 
+                                         Tablet="36" 
+                                         TV="80" />
+                            </On>
+                            <On Platform="Android, iOS" Value="36" />
+                            <On Platform="UWP" Value="36" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="Margin"
                         Value="12, 0" />
             </Style>
@@ -49,6 +61,7 @@
                 <Setter Property="FontSize">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Tizen" Value="{StaticResource LargerSize}" />
                             <On Platform="Android, iOS" Value="{StaticResource LargerSize}" />
                             <On Platform="UWP" Value="{StaticResource BigSize}" />
                         </OnPlatform>
@@ -92,8 +105,7 @@
                    TargetType="Label">
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource TabSeparatorColor}" />
-                <Setter Property="HeightRequest" 
-                        Value="1" />
+                <Setter Property="HeightRequest" Value="1" />
                 <Setter Property="VerticalOptions" 
                         Value="End" />
             </Style>
@@ -102,8 +114,12 @@
                    TargetType="Label">
                 <Setter Property="BackgroundColor" 
                         Value="{StaticResource AccentTabColor}" />
-                <Setter Property="HeightRequest" 
-                        Value="2" />
+                <Setter Property="HeightRequest" >
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="2" 
+                             Tablet="2" 
+                             TV="3" />
+                </Setter>
                 <Setter Property="VerticalOptions" 
                         Value="End" />
                 <Setter Property="Margin" 
@@ -144,19 +160,32 @@
                    TargetType="controls:RatingControl">
                 <Setter Property="HorizontalOptions"
                         Value="End" />
-                <Setter Property="HeightRequest" 
-                        Value="12" />
                 <Setter Property="WidthRequest">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="x:Double"
+                                         Phone="80" 
+                                         Tablet="80" 
+                                         TV="300" />
+                            </On>
                             <On Platform="Android, iOS" Value="80" />
                             <On Platform="UWP" Value="100" />
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
+                <Setter Property="HeightRequest">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Double"
+                                 Phone="12" 
+                                 Tablet="12" 
+                                 TV="80" />
+                    </Setter.Value>
+                </Setter>
                 <Setter Property="Margin">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Tizen" Value="0, 0, 12, 22" />
                             <On Platform="Android, iOS" Value="0, 0, 12, 22" />
                             <On Platform="UWP" Value="0, 0, 12, 20" />
                         </OnPlatform>
@@ -172,8 +201,12 @@
                         Value="FillAndExpand" />
                 <Setter Property="VerticalOptions" 
                         Value="FillAndExpand" />
-                <Setter Property="Margin" 
-                        Value="0, 0, 0, 60" />
+                <Setter Property="Margin">
+                    <OnIdiom x:TypeArguments="Thickness"
+                             Phone="0, 0, 0, 60" 
+                             Tablet="0, 0, 0, 60" 
+                             TV="0, 0, 0, 150" />
+                </Setter>
             </Style>
 
             <Style x:Key="NextTextStyle" 
@@ -244,32 +277,57 @@
                             Source="{Binding Hotel.DefaultPicture, Converter={StaticResource HotelImageConverter}}" 
                             Aspect="AspectFill"
                             DownsampleToViewSize="true"
-                            HeightRequest="420"
 					        HorizontalOptions="FillAndExpand"
 					        VerticalOptions="Start">
+                            <ffimageloading:CachedImage.HeightRequest>
+                                <OnIdiom x:TypeArguments="x:Double"
+                                                 Phone="420" 
+                                                 Tablet="420" 
+                                                 TV="1500" />
+                            </ffimageloading:CachedImage.HeightRequest>
                             <ffimageloading:CachedImage.LoadingPlaceholder>
                                 <OnPlatform x:TypeArguments="ImageSource">
                                     <On Platform="Android, iOS" Value="placeholder_2" />
                                     <On Platform="UWP" Value="Assets/placeholder_2.png" />
+                                    <On Platform="Tizen" Value="placeholder_2.png" />
                                 </OnPlatform>
                             </ffimageloading:CachedImage.LoadingPlaceholder>
                             <ffimageloading:CachedImage.ErrorPlaceholder>
                                 <OnPlatform x:TypeArguments="ImageSource">
                                     <On Platform="Android, iOS" Value="placeholder_2" />
                                     <On Platform="UWP" Value="Assets/placeholder_2.png" />
+                                    <On Platform="Tizen" Value="placeholder_2.png" />
                                 </OnPlatform>
                             </ffimageloading:CachedImage.ErrorPlaceholder>
                         </ffimageloading:CachedImage>
                         <Grid
                             x:Name="SubHeaderView"
                             BackgroundColor="{StaticResource WhiteColor}"
-                            HeightRequest="80"
                             VerticalOptions="Start"
                             Opacity="1">
+                            <Grid.HeightRequest>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="Tizen">
+                                        <OnIdiom x:TypeArguments="x:Double"
+                                                 Phone="80" 
+                                                 Tablet="80" 
+                                                 TV="300" />
+                                    </On>
+                                    <On Platform="Android" Value="80" />
+                                    <On Platform="UWP" Value="80" />
+                                    <On Platform="iOS" Value="80" />
+                                </OnPlatform>
+                            </Grid.HeightRequest>
                             <Grid.Padding>
                                 <OnPlatform x:TypeArguments="Thickness">
                                     <On Platform="Android, UWP" Value="12, 0" />
                                     <On Platform="iOS" Value="12, 24, 12, 0" />
+                                    <On Platform="Tizen">
+                                        <OnIdiom x:TypeArguments="Thickness"
+                                                 Phone="12, 0" 
+                                                 Tablet="12, 0" 
+                                                 TV="30, 30, 30, 40" />
+                                    </On>
                                 </OnPlatform>
                             </Grid.Padding>
                             <Grid.ColumnDefinitions>
@@ -322,12 +380,14 @@
                                     <OnPlatform x:TypeArguments="ImageSource">
                                         <On Platform="Android, iOS" Value="ic_star_active" />
                                         <On Platform="UWP" Value="Assets/ic_star_active.png" />
+                                        <On Platform="Tizen" Value="ic_star_active.png" />
                                     </OnPlatform>
                                 </controls:RatingControl.ImageFullStar>
                                 <controls:RatingControl.ImageEmptyStar>
                                     <OnPlatform x:TypeArguments="ImageSource">
                                         <On Platform="Android, iOS" Value="ic_star_normal" />
                                         <On Platform="UWP" Value="Assets/ic_star_normal.png" />
+                                        <On Platform="Tizen" Value="ic_star_normal.png" />
                                     </OnPlatform>
                                 </controls:RatingControl.ImageEmptyStar>
                             </controls:RatingControl>
@@ -352,10 +412,29 @@
                                     <OnPlatform x:TypeArguments="GridLength">
                                         <On Platform="iOS" Value="370" />
                                         <On Platform="Android, UWP" Value="400" />
+                                        <On Platform="Tizen">
+                                            <OnIdiom x:TypeArguments="GridLength"
+                                                     Phone="400" 
+                                                     Tablet="400" 
+                                                     TV="1500" />
+                                        </On>
                                     </OnPlatform>
                                 </RowDefinition.Height>
                             </RowDefinition>
-                            <RowDefinition Height="60" />
+                            <RowDefinition>
+                                <RowDefinition.Height>
+                                    <OnPlatform x:TypeArguments="GridLength">
+                                        <On Platform="iOS" Value="60" />
+                                        <On Platform="Android, UWP" Value="60" />
+                                        <On Platform="Tizen">
+                                            <OnIdiom x:TypeArguments="GridLength"
+                                                     Phone="60" 
+                                                     Tablet="60" 
+                                                     TV="150" />
+                                        </On>
+                                    </OnPlatform>
+                                </RowDefinition.Height>
+                            </RowDefinition>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Grid
@@ -435,6 +514,12 @@
                             <Grid  
                                 IsVisible="{Binding MyHotel}">
                                 <StackLayout>
+                                    <StackLayout.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="Tizen" Value="40 50" />
+                                            <On Platform="Android, iOS, UWP" Value="0" />
+                                        </OnPlatform>
+                                    </StackLayout.Margin>
                                     <Label 
                                         Text="{Binding Hotel.Description}"
                                         Style="{StaticResource HotelDescriptionStyle}"/>
@@ -482,6 +567,12 @@
                             <Grid  
                                 IsVisible="{Binding Rooms}">
                                 <StackLayout>
+                                    <StackLayout.Margin>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="Tizen" Value="40 50" />
+                                            <On Platform="Android, iOS, UWP" Value="0" />
+                                        </OnPlatform>
+                                    </StackLayout.Margin>
                                     <Label   
                                         Text="{extensions:Translate DoubleRoom}"
                                         Style="{StaticResource SectionTitleStyle}"/>
@@ -518,12 +609,18 @@
                             </Grid>
                             <Grid  
                                 IsVisible="{Binding Reviews}">
+                                <Grid.Margin>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Tizen" Value="40 50" />
+                                        <On Platform="Android, iOS, UWP" Value="0" />
+                                    </OnPlatform>
+                                </Grid.Margin>
                                 <ListView
                                     ItemsSource="{Binding HotelReviews}" 
                                     CachingStrategy="RecycleElement"
                                     SeparatorVisibility="None"
                                     HasUnevenRows="True"
-                                    HeightRequest="{Binding HotelReviews.Count, {StaticResource CountToHeightConverter}}">
+                                    HeightRequest="{Binding HotelReviews.Count, Converter={StaticResource CountToHeightConverter}}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <ViewCell>
@@ -538,9 +635,14 @@
                 </controls:ParallaxControl>
                 <Grid   
                     AutomationId="complete"
-                    HeightRequest="60"
                     VerticalOptions="End"
                     BackgroundColor="{StaticResource NextButtonColor}">
+                    <Grid.HeightRequest>
+                        <OnIdiom x:TypeArguments="x:Double"
+                                         Phone="60" 
+                                         Tablet="60" 
+                                         TV="150" />
+                    </Grid.HeightRequest>
                     <Label 
                         Text="BOOK NOW"
                         Style="{StaticResource NextTextStyle}"/>

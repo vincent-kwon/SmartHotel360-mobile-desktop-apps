@@ -24,8 +24,9 @@ namespace SmartHotel.Clients
         }
         public App()
         {
+            string autority = "https://login.microsoftonline.com/common";
             AuthenticationClient =
-                new PublicClientApplication($"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}", AppSettings.B2cClientId);
+                new PublicClientApplication($"{AppSettings.B2cAuthority}{AppSettings.B2cTenant}", autority);
 
             InitializeComponent();
     

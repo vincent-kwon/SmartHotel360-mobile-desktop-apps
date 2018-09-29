@@ -45,10 +45,27 @@
                     Grid.Column="0"
                     Grid.RowSpan="2"
                     Source="{Binding Type, Converter={StaticResource NotificationTypeToIconConverter}, ConverterParameter=_2}"
-                    HeightRequest="32"
                     Aspect="AspectFit"
-                    VerticalOptions="Start"
-                    Margin="5" />
+                    VerticalOptions="Start">
+                    <Image.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="Thickness"
+                                         Phone="5" 
+                                         Tablet="5" 
+                                         TV="30" />
+                            </On>
+                            <On Platform="Android, iOS" Value="5" />
+                            <On Platform="UWP" Value="5" />
+                        </OnPlatform>
+                    </Image.Margin>
+                    <Image.HeightRequest>
+                        <OnIdiom x:TypeArguments="x:Double"
+                             Phone="32" 
+                             Tablet="32" 
+                             TV="80" />
+                    </Image.HeightRequest>
+                </Image>
                 <Label 
                     Grid.Column="1"
                     Grid.Row="0"
@@ -72,6 +89,12 @@
                     Margin="5">
                     <Image.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="x:Double"
+                                         Phone="36" 
+                                         Tablet="36" 
+                                         TV="80" />
+                            </On>
                             <On Platform="Android" Value="36" />
                             <On Platform="UWP" Value="32" />
                             <On Platform="iOS" Value="28" />
@@ -79,6 +102,7 @@
                     </Image.HeightRequest>
                     <Image.Source>
                         <OnPlatform x:TypeArguments="ImageSource">
+                            <On Platform="Tizen" Value="ic_paperbin_red.png" />
                             <On Platform="Android, iOS" Value="ic_paperbin_red" />
                             <On Platform="UWP" Value="Assets/ic_paperbin_red.png" />
                         </OnPlatform>

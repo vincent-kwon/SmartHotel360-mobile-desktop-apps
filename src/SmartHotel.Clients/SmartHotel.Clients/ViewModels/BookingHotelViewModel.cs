@@ -203,12 +203,14 @@ namespace SmartHotel.Clients.Core.ViewModels
             {
                 var authenticatedUser = _authenticationService.AuthenticatedUser;
 
-                var booking = await DialogService.ShowConfirmAsync(
-                string.Format(Resources.DialogBookingMessage, Hotel.Name),
-                Resources.DialogBookingTitle,
-                Resources.DialogYes,
-                Resources.DialogNo);
+                // Temporary
+                //var booking = await DialogService.ShowConfirmAsync(
+                //string.Format(Resources.DialogBookingMessage, Hotel.Name),
+                //Resources.DialogBookingTitle,
+                //Resources.DialogYes,
+                //Resources.DialogNo);
 
+                var booking = true;
                 if (booking)
                 {
                     var user = _authenticationService.AuthenticatedUser;

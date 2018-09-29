@@ -12,12 +12,24 @@
     <ContentPage.Content>
         <Grid    
             AutomationId="splash">
-            <Image Aspect="AspectFill">
+            <Image>
                 <Image.Source>
                     <OnPlatform x:TypeArguments="ImageSource">
                         <On Platform="iOS" Value="Default" />
+                        <On Platform="Tizen">
+                            <OnIdiom x:TypeArguments="ImageSource"
+                                 Phone="Default.png" 
+                                 Tablet="Default.png" 
+                                 TV="tv/hero_image.png" />
+                        </On>
                     </OnPlatform>
                 </Image.Source>
+                <Image.Aspect>
+                    <OnIdiom x:TypeArguments="Aspect"
+                                 Phone="AspectFill" 
+                                 Tablet="AspectFill" 
+                                 TV="AspectFit" />
+                </Image.Aspect>
             </Image>
             <ActivityIndicator 
                 Color="{StaticResource AccentColor}"

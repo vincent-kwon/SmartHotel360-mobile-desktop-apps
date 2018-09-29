@@ -14,8 +14,8 @@ namespace SmartHotel.Clients.Core.Services.Authentication
 
             var user = new Models.User
             {
-                Id = ar.User.UniqueId,
-                Token = ar.Token,
+                Id = ar.User.Identifier,
+                Token = ar.AccessToken,
                 Email = GetTokenValue(data, "emails"),
                 Name = GetTokenValue(data, "given_name"),
                 LastName = GetTokenValue(data, "family_name")

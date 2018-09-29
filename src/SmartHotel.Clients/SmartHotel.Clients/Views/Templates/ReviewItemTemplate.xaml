@@ -39,11 +39,23 @@
                    TargetType="controls:RatingControl">
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="Precision" Value="Full" />
+                <Setter Property="HeightRequest">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="12" 
+                             Tablet="12" 
+                             TV="50" />
+                </Setter>
                 <Setter Property="WidthRequest">
                     <Setter.Value>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="Android, iOS" Value="80" />
                             <On Platform="UWP" Value="100" />
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="x:Double"
+                                     Phone="80" 
+                                     Tablet="80" 
+                                     TV="400" />
+                            </On>
                         </OnPlatform>
                     </Setter.Value>
                 </Setter>
@@ -63,8 +75,13 @@
     <ContentView.Content>
         <Grid
             RowSpacing="0"
-            BackgroundColor="{StaticResource WhiteColor}"
-            HeightRequest="120">
+            BackgroundColor="{StaticResource WhiteColor}">
+            <Grid.HeightRequest>
+                <OnIdiom x:TypeArguments="x:Double"
+                             Phone="120" 
+                             Tablet="120" 
+                             TV="400" />
+            </Grid.HeightRequest>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -80,7 +97,14 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition>
+                        <ColumnDefinition.Width>
+                            <OnIdiom x:TypeArguments="GridLength"
+                                     Phone="150" 
+                                     Tablet="150" 
+                                     TV="400" />
+                        </ColumnDefinition.Width>
+                    </ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Label
                     Grid.Column="0"
@@ -98,12 +122,14 @@
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="ic_star_active" />
                             <On Platform="UWP" Value="Assets/ic_star_active.png" />
+                            <On Platform="Tizen" Value="ic_star_active.png" />
                         </OnPlatform>
                     </controls:RatingControl.ImageFullStar>
                     <controls:RatingControl.ImageEmptyStar>
                         <OnPlatform x:TypeArguments="ImageSource">
                             <On Platform="Android, iOS" Value="ic_star_normal" />
                             <On Platform="UWP" Value="Assets/ic_star_normal.png" />
+                            <On Platform="Tizen" Value="ic_star_normal.png" />
                         </OnPlatform>
                     </controls:RatingControl.ImageEmptyStar>
                 </controls:RatingControl>

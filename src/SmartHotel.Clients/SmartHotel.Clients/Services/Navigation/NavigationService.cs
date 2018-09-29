@@ -30,14 +30,16 @@ namespace SmartHotel.Clients.Core.Services.Navigation
 
         public async Task InitializeAsync()
         {
-            if (await _authenticationService.UserIsAuthenticatedAndValidAsync())
-            {
-                await NavigateToAsync<MainViewModel>();
-            }
-            else
-            {
-                await NavigateToAsync<LoginViewModel>();
-            }
+            await _authenticationService.LoginAsync("john@contoso.com", "12345678");
+            await NavigateToAsync<MainViewModel>();
+            //if (await _authenticationService.UserIsAuthenticatedAndValidAsync())
+            //{
+            //    await NavigateToAsync<MainViewModel>();
+            //}
+            //else
+            //{
+            //    await NavigateToAsync<LoginViewModel>();
+            //}
         }
 
         public Task NavigateToAsync<TViewModel>() where TViewModel : ViewModelBase
@@ -109,11 +111,19 @@ namespace SmartHotel.Clients.Core.Services.Navigation
 
                     if (currentPage.GetType() != page.GetType())
                     {
+                        if (Device.RuntimePlatform == Device.Tizen)
+                        {
+                            NavigationPage.SetHasNavigationBar(page, false);
+                        }
                         await navigationPage.PushAsync(page);
                     }
                 }
                 else
                 {
+                    if (Device.RuntimePlatform == Device.Tizen)
+                    {
+                        NavigationPage.SetHasNavigationBar(page, false);
+                    }
                     navigationPage = new CustomNavigationPage(page);
                     mainPage.Detail = navigationPage;
                 }
@@ -122,6 +132,10 @@ namespace SmartHotel.Clients.Core.Services.Navigation
             }
             else
             {
+                if (Device.RuntimePlatform == Device.Tizen)
+                {
+                    NavigationPage.SetHasNavigationBar(page, false);
+                }
                 var navigationPage = CurrentApplication.MainPage as CustomNavigationPage;
 
                 if (navigationPage != null)
@@ -133,7 +147,6 @@ namespace SmartHotel.Clients.Core.Services.Navigation
                     CurrentApplication.MainPage = new CustomNavigationPage(page);
                 }
             }
-
             await (page.BindingContext as ViewModelBase).InitializeAsync(parameter);
         }
 

@@ -32,7 +32,7 @@
                 <Setter Property="Opacity" 
                         Value="0.25" />
                 <Setter Property="HeightRequest" 
-                        Value="1" />
+                        Value="2" />
             </Style>
             
             <Style x:Key="FilterIconStyle" 
@@ -43,6 +43,19 @@
                         Value="Center" />
                 <Setter Property="Margin" 
                         Value="12, 0" />
+                <Setter Property="HeightRequest">
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Tizen">
+                            <OnIdiom x:TypeArguments="x:Double"
+                             Phone="48" 
+                             Tablet="48" 
+                             TV="48" />
+                        </On>
+                        <On Platform="Android" Value="48" />
+                        <On Platform="WinPhone" Value="48" />
+                        <On Platform="iOS" Value="48" />
+                    </OnPlatform>
+                </Setter>
             </Style>
 
         </ResourceDictionary>
@@ -63,16 +76,60 @@
                 RowSpacing="0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="1" />
-                    <RowDefinition Height="48" />
-                    <RowDefinition Height="1" />
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength">
+                                <On Platform="iOS" Value="1" />
+                                <On Platform="Android, UWP" Value="1" />
+                                <On Platform="Tizen">
+                                    <OnIdiom x:TypeArguments="GridLength"
+                                             Phone="1" 
+                                             Tablet="1" 
+                                             TV="3" />
+                                </On>
+                            </OnPlatform>
+                        </RowDefinition.Height>
+                    </RowDefinition>
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength">
+                                <On Platform="iOS" Value="48" />
+                                <On Platform="Android, UWP" Value="48" />
+                                <On Platform="Tizen">
+                                    <OnIdiom x:TypeArguments="GridLength"
+                                             Phone="48" 
+                                             Tablet="48" 
+                                             TV="120" />
+                                </On>
+                            </OnPlatform>
+                        </RowDefinition.Height>
+                    </RowDefinition>
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength">
+                                <On Platform="iOS" Value="1" />
+                                <On Platform="Android, UWP" Value="1" />
+                                <On Platform="Tizen">
+                                    <OnIdiom x:TypeArguments="GridLength"
+                                             Phone="1" 
+                                             Tablet="1" 
+                                             TV="3" />
+                                </On>
+                            </OnPlatform>
+                        </RowDefinition.Height>
+                    </RowDefinition>
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <StackLayout
-                    Grid.Row="0"
-                    Margin="24, 12">
+                    Grid.Row="0">
                     <StackLayout.Margin>
                         <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="Tizen">
+                                <OnIdiom x:TypeArguments="Thickness"
+                                     Phone="24, 12" 
+                                     Tablet="24, 12" 
+                                     TV="36, 20" />
+                            </On>
                             <On Platform="Android, UWP" Value="24, 12" />
                             <On Platform="iOS" Value="24, 36, 24, 12" />
                         </OnPlatform>
@@ -117,6 +174,7 @@
                         Style="{StaticResource FilterIconStyle}">
                         <Image.Source>
                             <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Tizen" Value="ic_sort.png" />
                                 <On Platform="Android, iOS" Value="ic_sort" />
                                 <On Platform="UWP" Value="Assets/ic_sort.png" />
                             </OnPlatform>
@@ -129,6 +187,7 @@
                             <OnPlatform x:TypeArguments="ImageSource">
                                 <On Platform="Android, iOS" Value="ic_filter" />
                                 <On Platform="UWP" Value="Assets/ic_filter.png" />
+                                <On Platform="Tizen" Value="ic_filter.png" />
                             </OnPlatform>
                         </Image.Source>
                     </Image>
@@ -139,6 +198,7 @@
                             <OnPlatform x:TypeArguments="ImageSource">
                                 <On Platform="Android, iOS" Value="ic_map" />
                                 <On Platform="UWP" Value="Assets/ic_map.png" />
+                                <On Platform="Tizen" Value="ic_map.png" />
                             </OnPlatform>
                         </Image.Source>
                     </Image>

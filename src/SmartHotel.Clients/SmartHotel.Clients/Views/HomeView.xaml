@@ -29,14 +29,20 @@
             <Style x:Key="BookConferenceTextStyle" 
                    TargetType="Label" 
                    BasedOn="{StaticResource BookTextStyle}">
-                <Setter Property="TextColor" Value="{StaticResource OrangeColor}" />
+                <Setter Property="TextColor" Value="{StaticResource WhiteColor}" />
             </Style>
 
             <OnPlatform x:Key="ChartTextSize"
-                        x:TypeArguments="x:Double"
-                        iOS="10"
-                        Android="10"
-                        WinPhone="11"/>
+                        x:TypeArguments="x:Double">
+                <On Platform="Tizen">
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="10" 
+                             Tablet="10" 
+                             TV="50" />
+                </On>
+                <On Platform="Android" Value="10" />
+                <On Platform="UWP" Value="11" />
+            </OnPlatform>
             
             <Style x:Key="ChartTextStyle" 
                    TargetType="Label"
@@ -95,9 +101,16 @@
             <Style x:Key="GoMyRoomPanel2Style" 
                    TargetType="Grid"
                    BasedOn="{StaticResource GoMyRoomPanelStyle}">
-                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="HeightRequest">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Double"
+                            Phone="48" 
+                            Tablet="48" 
+                            TV="120" />
+                    </Setter.Value>
+                </Setter>
             </Style>
-            
+
             <Color x:Key="BookConferencePanelColor">#378D93</Color>
             
             <Style x:Key="BookConferencePanelStyle" 
@@ -110,7 +123,14 @@
             <Style x:Key="BookConferencePanel2Style" 
                    TargetType="Grid"
                    BasedOn="{StaticResource BookConferencePanelStyle}">
-                <Setter Property="HeightRequest" Value="48" />
+                <Setter Property="HeightRequest">
+                    <Setter.Value>
+                        <OnIdiom x:TypeArguments="x:Double"
+                            Phone="48" 
+                            Tablet="48" 
+                            TV="120" />
+                    </Setter.Value>
+                </Setter>
             </Style>
             
         </ResourceDictionary>
@@ -121,6 +141,7 @@
             Command="{Binding OpenDoorCommand}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Tizen" Value="ic_card.png" />
                     <On Platform="Android, iOS" Value="ic_card" />
                     <On Platform="UWP" Value="Assets/ic_card.png" />
                 </OnPlatform>
@@ -133,7 +154,20 @@
                 AutomationId="home"
                 RowSpacing="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4.6*" />
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform x:TypeArguments="GridLength">
+                                <On Platform="Tizen">
+                                    <OnIdiom x:TypeArguments="GridLength"
+                                             Phone="4.6*"
+                                             Tablet="4.6*"
+                                             TV="3.6*"/>
+                                </On>
+                                <On Platform="Android, iOS" Value="4.6*" />
+                                <On Platform="UWP" Value="4.6*" />
+                            </OnPlatform>
+                        </RowDefinition.Height>
+                    </RowDefinition>
                     <RowDefinition Height="5.4*" />
                 </Grid.RowDefinitions>
                 <!-- CAROUSEL -->
@@ -143,7 +177,13 @@
                         Aspect="AspectFill">
                         <Image.Source>
                             <OnPlatform x:TypeArguments="ImageSource">
-                                <On Platform="Android, iOS" Value="hero_image" />
+                                <On Platform="Tizen">
+                                    <OnIdiom x:TypeArguments="ImageSource"
+                                         Phone="hero_image.png" 
+                                         Tablet="hero_image.png" 
+                                         TV="tv/hero_image.png" />
+                                </On>
+                                <On Platform="Android, iOS" Value="hero_image.png" />
                                 <On Platform="UWP" Value="Assets/hero_image.png" />
                             </OnPlatform>
                         </Image.Source>
@@ -171,6 +211,7 @@
                         Aspect="AspectFit">
                         <Image.Source>
                             <OnPlatform x:TypeArguments="ImageSource">
+                                <On Platform="Tizen" Value="simbol_logo.png" />
                                 <On Platform="Android, iOS" Value="simbol_logo" />
                                 <On Platform="UWP" Value="Assets/simbol_logo.png" />
                             </OnPlatform>
@@ -205,6 +246,12 @@
                             Aspect="AspectFill">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen">
+                                        <OnIdiom x:TypeArguments="ImageSource"
+                                             Phone="img_1.png" 
+                                             Tablet="img_1.png" 
+                                             TV="tv/img_5.png" />
+                                    </On>
                                     <On Platform="Android, iOS" Value="img_1" />
                                     <On Platform="UWP" Value="Assets/img_1.png" />
                                 </OnPlatform>
@@ -237,6 +284,12 @@
                             Aspect="AspectFill">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen">
+                                        <OnIdiom x:TypeArguments="ImageSource"
+                                             Phone="img_2.png" 
+                                             Tablet="img_2.png" 
+                                             TV="tv/img_4.png" />
+                                    </On>
                                     <On Platform="Android, iOS" Value="img_2" />
                                     <On Platform="UWP" Value="Assets/img_2.png" />
                                 </OnPlatform>
@@ -244,7 +297,8 @@
                         </ffimageloading:CachedImage>
                         <Grid   
                             Grid.Row="1"
-                            BackgroundColor="{StaticResource WhiteColor}">
+                            BackgroundColor="{StaticResource GreenColor}
+                            ">
                             <Label
                                 Text="BOOK A&#x0a;CONFERENCE ROOM"
                                 Style="{StaticResource BookConferenceTextStyle}"/>
@@ -258,12 +312,20 @@
                     <Grid
                         Grid.Row="1"
                         Grid.Column="0"
-                        BackgroundColor="{StaticResource WhiteColor}">
+                        BackgroundColor="{StaticResource WhiteColor}"
+                        Margin="0, 0, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="3*" />
-                            <RowDefinition Height="7*" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         <StackLayout
+                            x:Name="RestaurantTitle"
+                            Grid.Column="0"
                             Grid.Row="0"
                             Orientation="Horizontal">
                             <Label
@@ -275,6 +337,8 @@
                                 Style="{StaticResource SeeAllTextStyle}"/>
                         </StackLayout>
                         <StackLayout
+                            x:Name="RestaurantContent"
+                            Grid.Column="0"
                             Grid.Row="1">
                             <Label            
                                 Text="{extensions:Translate Restaurant}"
@@ -287,21 +351,107 @@
                                     Command="{Binding SuggestionsCommand}" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
+                        <ffimageloading:CachedImage  
+                            x:Name="RestaurantImage"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
+                            Aspect="AspectFill">
+                            <ffimageloading:CachedImage.Source>
+                                <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="img_6.png" />
+                                    <On Platform="Android, iOS" Value="img_3" />
+                                    <On Platform="UWP" Value="Assets/img_6.png" />
+                                </OnPlatform>
+                            </ffimageloading:CachedImage.Source>
+                        </ffimageloading:CachedImage>
+                        <Grid   
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="2"
+                            IsVisible="{Binding HasBooking}"
+                            Style="{StaticResource GoMyRoomPanelStyle}">
+                            <Label    
+                                Text="{extensions:Translate GoMyRoomMayus}"
+                                Style="{StaticResource BookTextStyle}"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding GoMyRoomCommand}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
                     </Grid>
                     <!-- MORE INFO -->
                     <Grid
                         Grid.Row="1"
                         Grid.Column="1"
-                        RowSpacing="0">
+                        BackgroundColor="{StaticResource WhiteColor}"
+                        RowSpacing="0"
+                        Margin="0, 0, 0, 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <StackLayout
+                            x:Name="MoreInfoTitle"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Orientation="Horizontal">
+                            <Label
+                                Text="{extensions:Translate Suggestions}"
+                                Style="{StaticResource SuggestionsTextStyle}"/>
+                            <Label   
+                                Text="{extensions:Translate SeeAll}"
+                                HorizontalOptions="EndAndExpand"
+                                Style="{StaticResource SeeAllTextStyle}"/>
+                        </StackLayout>
+                        <StackLayout
+                            x:Name="MoreInfoContent"
+                            Grid.Column="0"
+                            Grid.Row="1">
+                            <Label            
+                                Text="{extensions:Translate Activities}"
+                                Style="{StaticResource RestaurantTextStyle}"/>
+                            <Label   
+                                Text="{extensions:Translate DoToday}"
+                                Style="{StaticResource RestaurantDetailTextStyle}"/>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding SuggestionsCommand}" />
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
                         <ffimageloading:CachedImage  
+                            x:Name="MoreInfoImage"
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Grid.RowSpan="3"
                             Aspect="AspectFill">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="img_3.png" />
                                     <On Platform="Android, iOS" Value="img_3" />
                                     <On Platform="UWP" Value="Assets/img_3.png" />
                                 </OnPlatform>
                             </ffimageloading:CachedImage.Source>
                         </ffimageloading:CachedImage>
+                        <Grid   
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="1"
+                            IsVisible="{Binding HasBooking}"
+                            Style="{StaticResource BookConferencePanelStyle}">
+                            <Label      
+                                Text="{extensions:Translate BookConferenceMayus}"
+                                Style="{StaticResource BookTextStyle}"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding BookConferenceCommand}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <!-- BOOKING -->
@@ -329,6 +479,7 @@
                             Margin="12, 24, 12, 12">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="room_temperature.png" />
                                     <On Platform="Android, iOS" Value="room_temperature" />
                                     <On Platform="UWP" Value="Assets/room_temperature.png" />
                                 </OnPlatform>
@@ -357,6 +508,7 @@
                             Margin="16, 36, 16, 6">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="ambient_light.png" />
                                     <On Platform="Android, iOS" Value="ambient_light" />
                                     <On Platform="UWP" Value="Assets/ambient_light.png" />
                                 </OnPlatform>
@@ -372,6 +524,7 @@
                             Margin="16, 12, 16, 6">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="be_green.png" />
                                     <On Platform="Android, iOS" Value="be_green" />
                                     <On Platform="UWP" Value="Assets/be_green.png" />
                                 </OnPlatform>
@@ -447,6 +600,7 @@
                             Aspect="AspectFill">
                             <ffimageloading:CachedImage.Source>
                                 <OnPlatform x:TypeArguments="ImageSource">
+                                    <On Platform="Tizen" Value="img_3.png" />
                                     <On Platform="Android, iOS" Value="img_3" />
                                     <On Platform="UWP" Value="Assets/img_3.png" />
                                 </OnPlatform>

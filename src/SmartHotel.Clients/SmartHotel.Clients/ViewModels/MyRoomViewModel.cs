@@ -179,7 +179,12 @@ namespace SmartHotel.Clients.Core.ViewModels
 
         private Task CheckoutAsync()
         {
-            return NavigationService.NavigateToPopupAsync<CheckoutViewModel>(true);
+            AppSettings.HasBooking = false;
+
+            MessagingCenter.Send(this, MessengerKeys.CheckoutRequested);
+            _analyticService.TrackEvent("Checkout");
+
+            return NavigationService.NavigateToAsync<HomeViewModel>(true);
         }
 
         private async Task OpenBotAsync()

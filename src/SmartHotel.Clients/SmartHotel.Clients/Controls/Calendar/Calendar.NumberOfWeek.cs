@@ -58,14 +58,14 @@ namespace SmartHotel.Clients.Core.Controls
 		#region NumberOfWeekFontSize
 
 		public static readonly BindableProperty NumberOfWeekFontSizeProperty =
-			BindableProperty.Create(nameof(NumberOfWeekFontSize), typeof(double), typeof(Calendar), 14.0,
+			BindableProperty.Create(nameof(NumberOfWeekFontSize), typeof(double), typeof(Calendar), (Device.Idiom == TargetIdiom.TV) ? 60.0 : 14.0,
 									propertyChanged: (bindable, oldValue, newValue) => (bindable as Calendar).ChangeNumberOfWeekFontSize((double)newValue, (double)oldValue));
 
 		protected void ChangeNumberOfWeekFontSize(double newValue, double oldValue)
 		{
 			if (Math.Abs(newValue - oldValue) < 0.01) return;
 			WeekNumbers?.ForEach((obj) => obj.WidthRequest = newValue*( Device.RuntimePlatform == Device.iOS ? 1.5 : 2.2));
-			weekNumberLabels.ForEach(l => l.FontSize = newValue);
+			weekNumberLabels.ForEach(l => l.FontSize = (Device.Idiom == TargetIdiom.TV) ? 60 : newValue);
 		}
 
 		/// <summary>
@@ -198,7 +198,7 @@ namespace SmartHotel.Clients.Core.Controls
 				{
 					var label = new Label
 					{
-						FontSize = TitleLabel.FontSize,
+						FontSize = (Device.Idiom == TargetIdiom.TV) ? 60 : TitleLabel.FontSize,
 						VerticalTextAlignment = TitleLabel.VerticalTextAlignment,
 						HorizontalTextAlignment = TitleLabel.HorizontalTextAlignment,
 						FontAttributes = TitleLabel.FontAttributes,
@@ -230,7 +230,7 @@ namespace SmartHotel.Clients.Core.Controls
 
 				if (WeekdaysShow)
 				{
-					var columDef = new ColumnDefinition { Width = 48 };
+					var columDef = new ColumnDefinition { Width = (Device.Idiom == TargetIdiom.TV) ? 230 : 48 };
 					var dl = new Grid { VerticalOptions = LayoutOptions.CenterAndExpand, RowSpacing = 0, ColumnSpacing = 0, Padding = 0};
 					dl.ColumnDefinitions = new ColumnDefinitionCollection { columDef, columDef, columDef, columDef, columDef, columDef, columDef };
                     var marginFront = NumberOfWeekFontSize * 1.5;
@@ -241,14 +241,14 @@ namespace SmartHotel.Clients.Core.Controls
 					{
                         dayLabels.Add(new Label
                         {
-                            HeightRequest = 48,
+                            HeightRequest = (Device.Idiom == TargetIdiom.TV) ? 230 : 48,
                             HorizontalOptions = LayoutOptions.Center,
                             VerticalOptions = LayoutOptions.Center,
                             HorizontalTextAlignment = TextAlignment.Center,
                             VerticalTextAlignment = TextAlignment.Center,
 							BackgroundColor = WeekdaysBackgroundColor,
 							TextColor = WeekdaysTextColor,
-							FontSize = WeekdaysFontSize,
+							FontSize = (Device.Idiom == TargetIdiom.TV) ? 60 : WeekdaysFontSize,
 							FontFamily = WeekdaysFontFamily,
 							FontAttributes = WeekdaysFontAttributes
 						});

@@ -100,12 +100,14 @@ namespace SmartHotel.Clients.Core.ViewModels
                 IsEnabled = true
             });
 
+            /*
             MenuItems.Add(new Models.MenuItem
             {
                 Title = "Concierge",
                 MenuItemType = MenuItemType.Concierge,
                 IsEnabled = true
             });
+            */
 
             MenuItems.Add(new Models.MenuItem
             {
