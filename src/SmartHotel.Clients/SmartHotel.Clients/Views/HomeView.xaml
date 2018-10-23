@@ -264,6 +264,8 @@
                                 Text="{extensions:Translate BookMayus}"
                                 Style="{StaticResource BookTextStyle}"/>
                         </Grid>
+                        <Button Grid.Row="0" Grid.RowSpan="2" BackgroundColor="White" Opacity="0.2" x:Name="BookRomButton" 
+                                Command="{Binding BookRoomCommand}"/>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding BookRoomCommand}" />
@@ -303,6 +305,8 @@
                                 Text="BOOK A&#x0a;CONFERENCE ROOM"
                                 Style="{StaticResource BookConferenceTextStyle}"/>
                         </Grid>
+                        <Button Grid.Row="0" Grid.RowSpan="2" BackgroundColor="White" Opacity="0.2" x:Name="BookConferenceButton" 
+                                Command="{Binding BookConferenceCommand}"/>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding BookConferenceCommand}" />
@@ -351,6 +355,8 @@
                                     Command="{Binding SuggestionsCommand}" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
+                        <Button Grid.Row="0" Grid.RowSpan="3" BackgroundColor="White" Opacity="0.2" x:Name="BookRestaurantButton"
+                                    Command="{Binding SuggestionsCommand}"/>
                         <ffimageloading:CachedImage  
                             x:Name="RestaurantImage"
                             Grid.Column="1"
@@ -424,6 +430,8 @@
                                     Command="{Binding SuggestionsCommand}" />
                             </StackLayout.GestureRecognizers>
                         </StackLayout>
+                        <Button Grid.Row="0" Grid.RowSpan="3" BackgroundColor="White" Opacity="0.2" x:Name="SuggestionsButton"
+                                    Command="{Binding SuggestionsCommand}"/>
                         <ffimageloading:CachedImage  
                             x:Name="MoreInfoImage"
                             Grid.Column="1"
@@ -585,6 +593,12 @@
                                     Command="{Binding GoMyRoomCommand}" />
                             </Grid.GestureRecognizers>
                         </Grid>
+                        <Button Grid.Row="2" 
+                                BackgroundColor="Gray" 
+                                Opacity="0.2"
+                                x:Name="GoMyRoomButton"
+                                Command="{Binding GoMyRoomCommand}"/>
+
                     </Grid>
                     <!-- MORE INFO -->
                     <Grid
